@@ -216,7 +216,7 @@ crontabs.stable.example.com                       2021-02-25T04:44:18Z
 b. CustomResource  
 [Command]
 ```
- kubectl get crontab -n secure-ns
+oc get crontab -n secure-ns
 ```
 [Result]
 ```
