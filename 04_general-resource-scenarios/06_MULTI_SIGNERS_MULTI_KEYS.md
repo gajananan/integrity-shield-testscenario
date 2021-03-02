@@ -26,7 +26,7 @@ Resources can be signed by multiple signers and multiple signing keys are avail
           - "SampleSigner2"
         - scope: "Cluster"
           signers:
-          - "SampleSigner      
+          - "SampleSigner"      
         signers:
         - name: "SampleSigner"
           keyConfig: sample-signer-keyconfig
@@ -53,8 +53,8 @@ Resources can be signed by multiple signers and multiple signing keys are avail
     oc get secret -n integrity-shield-operator-system | grep keyring
     ```
     ```
-    keyring-secret-signer                           Opaque                                1         7m40s
-    keyring-secret-signer2                          Opaque                                1         7m52s
+    keyring-secret           Opaque                                1         18s
+    keyring-secret-signer2   Opaque                                1         2m20s
     ```
 
 
