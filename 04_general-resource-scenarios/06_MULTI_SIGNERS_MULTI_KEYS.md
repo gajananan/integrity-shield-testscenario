@@ -66,7 +66,7 @@ Resources can be signed by multiple signers and multiple signing keys are avail
 ```
 oc create ns secure-ns 
 ```
-[Result]
+[Result]  
 If successful, the result will be:
 ```
  namespace/secure-ns created

@@ -8,11 +8,11 @@ When the request is blocked, user can check the Events
 ## Action steps:
 ### 1. create a namespace  
  
-[Action by oc command on ACM Managed Cluster]
-    ```
-    oc create ns secure-ns 
-    ```
-    [Result]
+[Command]  
+```
+oc create ns secure-ns 
+```
+[Result]  
 If successful, the result will be:
 ```
  namespace/secure-ns created
