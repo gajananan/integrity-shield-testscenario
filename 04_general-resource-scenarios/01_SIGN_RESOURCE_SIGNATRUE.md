@@ -1,26 +1,37 @@
-### Goal:
+## Goal:
 
 Define RSP and protect a resource with signature(resource signature) in newly created namespace
 
-### Prerequisite: 
+## Prerequisite: 
 1. Integrity shield is ready in a `managed cluster`
 2. you can connect via oc to a `managed cluster`
 
-### Action steps:
+## Action steps:
 
 [OC-MANAGED]
-1. Create a namespace in the cluster  
+### 1. Create a namespace in the cluster  
 [Command]
 ```
   oc create ns secure-ns 
 ```
-[Result]
+[Result]  
+If successful, the result will be:
 ```
  namespace/secure-ns created
 ```
-If `secure-ns` already exists, refresh the namespace or create another namespace for this test.
+On failure, 
+```
+Error from server (AlreadyExists): namespaces "secure-ns" already exists
+```
+If `secure-ns` already exists, refresh the namespace or create another namespace for this test.   
+[Command]  
+```
+oc delete ns secure-ns
+oc create ns secure-ns
+```
 
-2. Define which reource(s) should be [protected](https://github.com/IBM/integrity-enforcer/blob/master/docs/README_QUICK.md#define-which-reources-should-be-protected)
+
+### 2. Define which reource(s) should be [protected](https://github.com/IBM/integrity-enforcer/blob/master/docs/README_QUICK.md#define-which-reources-should-be-protected)
 
 [Command]
 ```
@@ -42,7 +53,7 @@ EOF
 resourcesigningprofile.apis.integrityshield.io/sample-rsp created
 ```
 
-3. Prepare a sample resource  
+### 3. Prepare a sample resource  
 
 [Command]
 ```
@@ -60,7 +71,7 @@ EOF
 
 [OC-MANAGED]
 
-4. Create a resources without signature
+### 4. Create a resource without signature
 
 [Command]
 ```
@@ -73,13 +84,13 @@ Error from server: error when creating "/tmp/test-cm.yaml": admission webhook "a
 ```
 
 [OC-MANAGED]  
-5. Create a resource with signature https://github.com/IBM/integrity-enforcer/blob/master/docs/README_QUICK.md#create-a-resource-with-signature
+### 5. Create a resource with [signature](https://github.com/IBM/integrity-enforcer/blob/master/docs/README_QUICK.md#create-a-resource-with-signature)
 
 a. Generate a signature for the sample resource  
 
 [Command]
 ```
-curl -s  https://raw.githubusercontent.com/IBM/integrity-enforcer/master/scripts/gpg-rs-sign.sh | bash -s \
+curl -s  https://raw.githubusercontent.com/open-cluster-management/integrity-enforcer/master/scripts/gpg-rs-sign.sh | bash -s \
 		  signer@enterprise.com \
 		  /tmp/test-cm.yaml \
 		  /tmp/test-cm-rs.yaml
@@ -128,7 +139,7 @@ configmap/test-cm created
 ```
 
 
-6. Prepare a changed sample resource  
+### 6. Prepare a changed sample resource  
 
 [Command]
 ```
@@ -144,7 +155,7 @@ EOF
 ```
 
 [OC-MANAGED]  
-7. Try to update sample resource and confirm the request is blocked  
+### 7. Try to update sample resource and confirm the request is blocked  
 
 [Command]
 ```
@@ -156,9 +167,9 @@ Error from server: error when replacing "/tmp/test-cm2.yaml": admission webhook 
 ```
 
 
-### Expected result
+## Expected result
 
-1. A ResourceSignature is created in the cluster.
+### 1. A ResourceSignature is created in the cluster.
 
 [Command]
 ```
@@ -170,7 +181,7 @@ oc get resourcesignatures.apis.integrityshield.io -n secure-ns
 NAME                     AGE
 rsig-configmap-test-cm   10s
 ```
-2. A ConfigMap is created in the cluster.
+### 2. A ConfigMap is created in the cluster.
 
 [Command]
 ```
@@ -182,14 +193,18 @@ NAME      DATA   AGE
 test-cm   3      9s
 ```
 
-3. Confirm data of configmap was not changed from the content in `/tmp/test-cm.yaml`
+### 3. Confirm data of configmap was not changed from the content in `/tmp/test-cm.yaml`
 
 [Command]
 ```
-oc get cm -n secure-ns test-cm -o jsonpath='{.data}'
+oc get cm -n secure-ns test-cm -o json | jq .data
 ```
 
 [Result] 
 ```
-{"key1":"val1","key2":"val2","key4":"val4"}
+{
+  "key1": "val1",
+  "key2": "val2",
+  "key4": "val4"
+}
 ```
