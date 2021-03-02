@@ -71,7 +71,7 @@ EOF
 
 [OC-MANAGED]
 
-### 4. Create a resources without signature
+### 4. Create a resource without signature
 
 [Command]
 ```

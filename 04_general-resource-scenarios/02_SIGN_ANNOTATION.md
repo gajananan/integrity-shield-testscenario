@@ -15,12 +15,13 @@ Define RSP and protect a resource with signature(annotation) in newly created na
   ```
   oc create ns secure-ns 
   ```
-  [Result]
-- succeeded 
+  [Result]  
+
+If successful, the result will be:
 ```
  namespace/secure-ns created
 ```
-- failed
+On failure, 
 ```
 Error from server (AlreadyExists): namespaces "secure-ns" already exists
 ```
@@ -94,6 +95,8 @@ signer@enterprise.com \
 /tmp/test-cm.yaml
 
 ```
+[Result]  
+Check if the signatrue is attached.  
 [Command]
 ```
 cat /tmp/test-cm.yaml | grep integrityshield.io |  wc -l

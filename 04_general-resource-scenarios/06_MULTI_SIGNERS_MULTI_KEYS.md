@@ -175,23 +175,25 @@ oc create ns secure-ns
   ```
 
 ### 5. generate a signature with each key  
-  a. configmap with signer1  
-  [Command]
-  ```
-  curl -s  https://raw.githubusercontent.com/IBM/integrity-enforcer/master/scripts/gpg-annotation-sign.sh | bash -s \
-  signer@enterprise.com \
-  /tmp/signer1-cm.yaml
-  ```
-  [Command]
-  ```
-  cat /tmp/signer1-cm.yaml | grep integrityshield.io
-  ```
+a. configmap with signer1  
+[Command]
+```
+curl -s  https://raw.githubusercontent.com/IBM/integrity-enforcer/master/scripts/gpg-annotation-sign.sh | bash -s \
+signer@enterprise.com \
+/tmp/signer1-cm.yaml
+```
+
   
-  [Result]
-  ```
-  integrityshield.io/message: YXBpVmVyc2lvbjogdjEKa2luZDo...
-  integrityshield.io/signature: LS0tLS1CRUdJTiBQR1AgU0lHTk...
-  ```
+[Result]  
+Check if the signatrue is attached.  
+[Command]
+```
+cat /tmp/signer1-cm.yaml | grep integrityshield.io |  wc -l
+```
+[Result]
+```
+2
+```
 
   b. deployment with signer2  
   
@@ -201,16 +203,16 @@ oc create ns secure-ns
   signer2@enterprise.com \
   /tmp/signer2-deployment.yaml
   ```
-  [Command]
-  ```
-  cat /tmp/signer2-deployment.yaml | grep integrityshield.io
-  ```
-  
-  [Result]
-  ```
-  integrityshield.io/message: YXBpVmVyc2lvbjogYXBwcy92MQpraW...
-  integrityshield.io/signature: LS0tLS1CRUdJTiBQR1AgU0lHTkFU...
-  ```
+[Result]  
+Check if the signatrue is attached.  
+[Command]
+```
+cat /tmp/signer2-deployment.yaml | grep integrityshield.io |  wc -l
+```
+[Result]
+```
+2
+```
     
 [OC-MANAGED]    
 
