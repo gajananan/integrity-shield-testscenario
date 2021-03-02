@@ -122,7 +122,7 @@ configmap/ignored-cm created
 ### 5. generate a signature for protected comfigmap  
 [Command]
 ```
-curl -s  https://raw.githubusercontent.com/IBM/integrity-enforcer/master/scripts/gpg-annotation-sign.sh | bash -s \
+curl -s  https://raw.githubusercontent.com/open-cluster-management/integrity-enforcer/master/scripts/gpg-annotation-sign.sh | bash -s \
 signer@enterprise.com \
 /tmp/protected-cm.yaml
 ```

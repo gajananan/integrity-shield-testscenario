@@ -86,7 +86,7 @@ Error from server: error when creating "/tmp/test-crb.yaml": admission webhook "
 ### 5. generate signature  
 [Command] 
 ```
-curl -s  https://raw.githubusercontent.com/IBM/integrity-enforcer/master/scripts/gpg-annotation-sign.sh | bash -s \
+curl -s  https://raw.githubusercontent.com/open-cluster-management/integrity-enforcer/master/scripts/gpg-annotation-sign.sh | bash -s \
 signer@enterprise.com \
 /tmp/test-crb.yaml 
 ```

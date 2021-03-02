@@ -178,7 +178,7 @@ oc create ns secure-ns
 a. configmap with signer1  
 [Command]
 ```
-curl -s  https://raw.githubusercontent.com/IBM/integrity-enforcer/master/scripts/gpg-annotation-sign.sh | bash -s \
+curl -s  https://raw.githubusercontent.com/open-cluster-management/integrity-enforcer/master/scripts/gpg-annotation-sign.sh | bash -s \
 signer@enterprise.com \
 /tmp/signer1-cm.yaml
 ```
@@ -199,7 +199,7 @@ cat /tmp/signer1-cm.yaml | grep integrityshield.io |  wc -l
   
   [Command]
   ```
-  curl -s  https://raw.githubusercontent.com/IBM/integrity-enforcer/master/scripts/gpg-annotation-sign.sh | bash -s \
+  curl -s  https://raw.githubusercontent.com/open-cluster-management/integrity-enforcer/master/scripts/gpg-annotation-sign.sh | bash -s \
   signer2@enterprise.com \
   /tmp/signer2-deployment.yaml
   ```

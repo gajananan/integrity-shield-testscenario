@@ -107,10 +107,10 @@ metadata:
 spec:
     protectRules:
     - match:
-    - kind: CronTab
-    - kind: CustomResourceDefinition
+      - kind: CronTab
+      - kind: CustomResourceDefinition
         name: crontabs.stable.example.com 
-    - kind: Service
+      - kind: Service
 EOF
 ```
 
@@ -138,7 +138,7 @@ Error from server: error when creating "/tmp/test-crd.yaml": admission webhook "
 ### 5. Generate signature for CustomResourceDefinition
 [Command]
 ```
-curl -s  https://raw.githubusercontent.com/IBM/integrity-enforcer/master/scripts/gpg-annotation-sign.sh | bash -s \
+curl -s  https://raw.githubusercontent.com/open-cluster-management/integrity-enforcer/master/scripts/gpg-annotation-sign.sh | bash -s \
 signer@enterprise.com \
 /tmp/test-crd.yaml
 ```
@@ -176,7 +176,7 @@ Error from server: error when creating "/tmp/test-cr.yaml": admission webhook "a
 ### 8. Generate signature for CustomResource
 [Command]   
 ```
-curl -s  https://raw.githubusercontent.com/IBM/integrity-enforcer/master/scripts/gpg-annotation-sign.sh | bash -s \
+curl -s  https://raw.githubusercontent.com/open-cluster-management/integrity-enforcer/master/scripts/gpg-annotation-sign.sh | bash -s \
 signer@enterprise.com \
 /tmp/test-cr.yaml
 ```
