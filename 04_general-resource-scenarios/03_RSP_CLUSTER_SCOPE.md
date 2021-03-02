@@ -1,64 +1,73 @@
-### Goal:
+## Goal:
 Cluster scope resource can be protected with signature
 
-### Prerequisite: 
+## Prerequisite: 
 1. Integrity shield is ready in a `managed cluster`
 2. you can connect via oc to a `managed cluster`
 
-### Action steps:
+## Action steps:
 [OC-MANAGED]
 
-1. create a namespace  
+### 1. create a namespace  
 [Command]
 ```
 oc create ns secure-ns 
 ```
 [Result]
+If successful, the result will be:
 ```
-namespace/secure-ns created
+ namespace/secure-ns created
 ```
-If `secure-ns` already exists, refresh the namespace or create another namespace for this test.
+On failure, 
+```
+Error from server (AlreadyExists): namespaces "secure-ns" already exists
+```
+If `secure-ns` already exists, refresh the namespace or create another namespace for this test.   
+[Command]  
+```
+oc delete ns secure-ns
+oc create ns secure-ns
+```
 
-
-2. prepare sample resource (ClusterRoleBinding)    
-   [Command]
-    ```
-    cat << EOF > /tmp/test-crb.yaml
-    apiVersion: rbac.authorization.k8s.io/v1
-    kind: ClusterRoleBinding
-    metadata:
-      name: sample-crb
-    subjects:
-    - kind: User
-      name: dave
-      apiGroup: rbac.authorization.k8s.io
-    roleRef:
-      kind: ClusterRole
-      name: secret-reader
-      apiGroup: rbac.authorization.k8s.io
-    EOF
-    ```
+### 2. prepare sample resource (ClusterRoleBinding)    
+[Command]
+```
+cat << EOF > /tmp/test-crb.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: sample-crb
+subjects:
+- kind: User
+  name: dave
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: secret-reader
+  apiGroup: rbac.authorization.k8s.io
+EOF
+```
 [OC-MANAGED]
 
-3. setup RSP  
-   [Command]
-    ```
-    cat <<EOF | oc apply -n secure-ns -f -
-    apiVersion: apis.integrityshield.io/v1alpha1
-    kind: ResourceSigningProfile
-    metadata:
-      name: sample-rsp
-    spec:
-      protectRules:
-      - match:
-        - kind: ClusterRoleBinding
-          name: sample-crb
-    EOF
-    ```
-    [Result]
-    ```
-    resourcesigningprofile.apis.integrityshield.io/sample-rsp created
-    ```
+### 3. setup RSP  
+[Command]
+```
+cat <<EOF | oc apply -n secure-ns -f -
+apiVersion: apis.integrityshield.io/v1alpha1
+kind: ResourceSigningProfile
+metadata:
+  name: sample-rsp
+spec:
+  protectRules:
+  - match:
+    - kind: ClusterRoleBinding
+      name: sample-crb
+EOF
+```
+[Result]
+```
+resourcesigningprofile.apis.integrityshield.io/sample-rsp created
+```
     
 [OC-MANAGED]
 

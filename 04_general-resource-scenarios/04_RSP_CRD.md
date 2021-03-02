@@ -9,15 +9,25 @@ Custom resource can be protected with signature
 
 [OC-MANAGED]
 1. create a namespace  
-    [Command]  
-    ```
-    oc create ns secure-ns 
-    ```
-    [Result]
-    ```
-    namespace/secure-ns created
-    ```
-If `secure-ns` already exists, refresh the namespace or create another namespace for this test.
+[Command]  
+```
+oc create ns secure-ns 
+```
+[Result]
+If successful, the result will be:
+```
+ namespace/secure-ns created
+```
+On failure, 
+```
+Error from server (AlreadyExists): namespaces "secure-ns" already exists
+```
+If `secure-ns` already exists, refresh the namespace or create another namespace for this test.   
+[Command]  
+```
+oc delete ns secure-ns
+oc create ns secure-ns
+```
 
 
 2. Prepare sample Customer resources  
@@ -69,54 +79,64 @@ a. CustomResourceDefinition
     ```
 
 b. CustomResource  
-    [Command]
-    ```
-    cat << EOF > /tmp/test-cr.yaml
-    apiVersion: "stable.example.com/v1"
-    kind: CronTab
-    metadata:
-      name: my-new-cron-object
-    spec:
-      cronSpec: "* * * * */5"
-      image: my-awesome-cron-image
-    EOF
-    ```
+[Command]
 
-[OC-MANAGED]
+```
+cat << EOF > /tmp/test-cr.yaml
+apiVersion: "stable.example.com/v1"
+kind: CronTab
+metadata:
+  name: my-new-cron-object
+spec:
+  cronSpec: "* * * * */5"
+  image: my-awesome-cron-image
+EOF
+```
+
+[OC-MANAGED]  
+
 3. setup RSP  
     [Command]
+    
     ```
     cat <<EOF | oc apply -n secure-ns -f -
     apiVersion: apis.integrityshield.io/v1alpha1
     kind: ResourceSigningProfile
     metadata:
-      name: sample-rsp
+        name: sample-rsp
     spec:
-      protectRules:
-      - match:
+        protectRules:
+        - match:
         - kind: CronTab
         - kind: CustomResourceDefinition
-          name: crontabs.stable.example.com 
+            name: crontabs.stable.example.com 
         - kind: Service
     EOF
     ```
     
     [Result]
+
     ```
     resourcesigningprofile.apis.integrityshield.io/sample-rsp created
     ```
+
 [OC-MANAGED]    
+
 4. deploy sample resources without signature  
     a. CustomResourceDefinition
 
     [Command]
+
     ```
     oc create -f /tmp/test-crd.yaml
     ```
+
     [Result]
+
     ```
     Error from server: error when creating "/tmp/test-crd.yaml": admission webhook "ac-server.integrity-shield-operator-system.svc" denied the request: Signature verification is required for this request, but no signature is found. Please attach a valid signature. (Request: {"kind":"CustomResourceDefinition","name":"crontabs.stable.example.com","namespace":"","operation":"CREATE","request.uid":"8536c2db-4431-4f26-ada5-2fdde6fe7166","scope":"Cluster","userName":"kubernetes-admin"})
     ```
+
     b. CustomResource
 
     [Command]
@@ -156,7 +176,7 @@ b. CustomResource
     signer@enterprise.com \
     /tmp/test-cr.yaml
     ```
-    [Command]
+    [Command]  
     Check if `integrityshield.io/message` and  `integrityshield.io/signature` are inserted.
     ```
     cat /tmp/test-cr.yaml | grep integrityshield.io
@@ -168,6 +188,7 @@ b. CustomResource
     ```
     
 [OC-MANAGED]   
+
 6. deploy resources  
     a. deploy CustomResourceDefinition
     
@@ -175,12 +196,13 @@ b. CustomResource
     ```
     oc create -f /tmp/test-crd.yaml
     ```
+
     [Result]
     ```
     customresourcedefinition.apiextensions.k8s.io/crontabs.stable.example.com created
     ```
     b. deploy CustomResource  
-    [Action by oc command on ACM Managed Cluster]
+    [Command]
     ```
     oc create -f /tmp/test-cr.yaml -n secure-ns
     ```
