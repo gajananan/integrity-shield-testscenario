@@ -96,7 +96,7 @@
  
     [Command]
     ```
-    cd policy-collection/deploy
+    cd deploy
     bash ./deploy.sh -u https://github.com/<YOUR-ORG-NAME>/policy-collection.git -a demo-community-policies -p community -n policy-community
     ```
     
