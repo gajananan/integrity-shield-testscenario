@@ -1,28 +1,28 @@
 # Change a Policy with Signature, with invalid signer.
 
-### Goal:
+## Goal:
 - User can not update a policy deployed in an ACM Hub/Managed Clusters without a valid signature  attached.
 
-### Prerequisite: 
+## Prerequisite: 
 - Policy collection is already cloned locally in signing host (already done in [prerequisite-setup-step](../prerequisite-setup/GIT_CLONE_POLICY_COLLECTION.md))
 - Integrity Shield protection is enabled  (already done in [install-scenarios-step](../install-scenarios/DEPLOY_ISHIELD.md))
 
-### Action Steps:
+## Action Steps:
 
 Complete the following six steps:
 
-1. Create a another signer key (with different email address e.g. `invalid_signer@enterprise.com`) as described in [doc](../prerequisite-setup/GPG_KEY_SETUP.md)
+### 1. Create a another signer key (with different email address e.g. `invalid_signer@enterprise.com`) as described in [doc](../prerequisite-setup/GPG_KEY_SETUP.md)
    
    This signer key must be different from the one setup in [install-scenarios-step](../install-scenarios/VERIFICATION_KEY_SETUP.md).
    
-2. Go to the directory of your cloned policy collection Git repository in the signing host
+### 2. Go to the directory of your cloned policy collection Git repository in the signing host
 
    [Command]
    ```
    cd <SIGING HOST DIR>/policy-collection
    ```
    
-3. Edit the policy file `community/SC-System-and-Communications-Protection/policy-ocp4-certs.yaml`
+### 3. Edit the policy file `community/SC-System-and-Communications-Protection/policy-ocp4-certs.yaml`
    
    In line 52, change `minimumDuration` from current value to different one (e.g. `700h`)
 
@@ -38,30 +38,30 @@ Complete the following six steps:
    700h
    ```
     
-4. Run the following command to sign `community/SC-System-and-Communications-Protection/policy-ocp4-certs.yaml` policy 
+### 4. Run the following command to sign policy file
     
-    **Pass `invalid_signer@enterprise.com` as parameter** when executing the following command
+   **Pass `invalid_signer@enterprise.com` as parameter** when executing the following command
     
-    [Command]
-    ```
-    curl -s  https://raw.githubusercontent.com/open-cluster-management/integrity-shield/master/scripts/gpg-annotation-sign.sh | bash -s \
+   [Command]
+   ```
+   curl -s  https://raw.githubusercontent.com/open-cluster-management/integrity-shield/master/scripts/gpg-annotation-sign.sh | bash -s \
         invalid_signer@enterprise.com \
         community/SC-System-and-Communications-Protection/policy-ocp4-certs.yaml
-    ```
-5. Run the following command
+   ```
+### 5. Run the following command
 
-    Confirm two annotations started with "integrityshield.io" are attached to `community/CM-Configuration-Management/policy-integrity-shield.yaml`
+   Confirm two annotations started with "integrityshield.io" are attached to `community/CM-Configuration-Management/policy-integrity-shield.yaml`
     
-    [Command]
-    ```
-    cat community/SC-System-and-Communications-Protection/policy-ocp4-certs.yaml | grep 'integrityshield.io/' | wc -l
-    ```
-    [Result]
-    ```
-    3
-    ```
+   [Command]
+   ```
+   cat community/SC-System-and-Communications-Protection/policy-ocp4-certs.yaml | grep 'integrityshield.io/' | wc -l
+   ```
+   [Result]
+   ```
+   3
+   ```
     
-6. Commit your changes in `policy-ocp4-certs.yaml` to your cloned policy-collection git repository.
+### 6. Commit your changes in `policy-ocp4-certs.yaml` to your cloned policy-collection git repository.
 
    [Command]
    ```
@@ -116,6 +116,6 @@ Continue to check the expected results after a minute (Above changes in Git repo
    
    Confirm at least one event that contains a message `Signature Verification requrid for this request, but failed to verify singature; Signed by unauthorized subject (signer is not in public key) or invalid format signature.` is found in the event list in the console as shown below.
    
-   ![Block Events](../images/ishield-log-invalid.PNG)
+   ![Violation Events](../images/ishield-log-invalid.PNG)
 
    
