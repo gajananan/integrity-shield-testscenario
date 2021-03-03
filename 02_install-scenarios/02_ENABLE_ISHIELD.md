@@ -46,7 +46,7 @@
     ```
     namespace/policy-community created
     ```
-    -  Create policy-integrity-shield in the ACM hub cluster in newly created namespace.
+    Create policy-integrity-shield in the ACM hub cluster in newly created namespace.
     
     Change `<YOUR-ORG-NAME>` to your Git Organization and use the URL that starts with `https://github.com` and pass it as parameter: `Cloned repository URL (-u)`, when executing the following command
     
@@ -177,15 +177,16 @@ Continue to check the expected results after a minute (Above changes in Git repo
  
     [OC-MANAGED]
     
-    Switch to ACM Hub cluster and, run the following `OC` command
+    Switch to ACM Hub Managed Cluster and, run the following `OC` command
     [Command]
     ```
     oc get pod -n integrity-shield-operator-system
     ```
     
+    Confirm the following two pods are in `Running` status
     [Result]
     ```
-    NAME                                                           READY   STATUS    RESTARTS   AGE
+    NAME                                                           READY       STATUS    RESTARTS   AGE
     integrity-shield-operator-controller-manager-588ddcffb-cvr8q   1/1         Running   0      26h
     integrity-shield-server-69bd97774-4ztf8                        2/2         Running   0      26h
     ```
