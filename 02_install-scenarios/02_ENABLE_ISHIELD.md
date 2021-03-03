@@ -29,47 +29,7 @@
     cd <SIGING HOST DIR>/policy-collection
     ```
  
- 3. Edit `community/CM-Configuration-Management/policy-integrity-shield.yaml`
-    
-    a. In line 16, change remediationAction from `inform` to `enforce`
-    
-    b. In line 183, configure the placement rule to select which ACM managed cluster(s) in which IShiled should be enabled.
-    
-       Check the below example for finding the appropriate labels ACM managed cluster(s) 
-       
-    ![ACM Managed Cluster Labels](../images/acm-managed-cluster-label.PNG)
-    
-    
- 4. Sign `community/CM-Configuration-Management/policy-integrity-shield.yaml` policy
- 
-    [Command]
-    ```
-    curl -s  https://raw.githubusercontent.com/open-cluster-management/integrity-shield/master/scripts/gpg-annotation-sign.sh | bash -s \
-        signer@enterprise.com \
-        community/CM-Configuration-Management/policy-integrity-shield.yaml
-    ```
- 
- 5. Check if two annotations started with "integrityshield.io" are attached to community/CM-Configuration-Management/policy-integrity-shield.yaml
- 
-    [Result]
-    ```
-    cat community/CM-Configuration-Management/policy-integrity-shield.yaml | grep 'integrityshield.io/' | wc -l
-    7
-    ```
-    
- 6. Commit your changes in `community/CM-Configuration-Management/policy-integrity-shield.yaml` to your cloned policy-collection git repository.
-
-   [Command]
-   ```
-   git add community/CM-Configuration-Management/policy-integrity-shield.yaml
-   git commit -m 'policy-integrity-shield.yaml with signature'
-   git push origin master
-   ```
-   
-   [Result]
-   
- 
- 6. Enable policy-integrity-shield on an ACM managed cluster.
+ 3. Enable policies on an ACM managed cluster.
     
     [OC-HUB]  
     - Switch to ACM Hub cluster and create a new namespace (e.g. policy-community) in the ACM hub cluster to deploy policy-integrity-shield
@@ -93,15 +53,112 @@
  
     [Command]
     ```
-    cd policy-collection/deploy
+    cd deploy
     bash ./deploy.sh -u https://github.com/<YOUR-ORG-NAME>/policy-collection.git -a demo-community-policies -p community -n policy-community
     ```
     
-    [Result]
+    [Result] Confirm the following resources are created
     ```
     channel.apps.open-cluster-management.io/demo-community-policies-chan created
     subscription.apps.open-cluster-management.io/demo-community-policies-sub created
     ```
+    
+    Above changes in Git repository will be synced by ACM Hub Cluster to update the changes in policy.
+    After a minute, continue to the following steps.
+
+ 4. Confirm the policy status in  ACM Hub Web Console.
+    [WebConsle-HUB]
+
+    a. Connect to ACM Hub Cluster WebConsole and go to polices page.
+    b. Search for `policy-integrity-shield` in Find Policies as shown below:
+    
+    ![policy-integrity-shield](../images/policy-violation-after-init.PNG)
+    
+    
+    c. Click `policy-integrity-shield` policy.
+    d. Check if `policy-integrity-shield` is in violation  state (Cluster violation -> red) as shown below.
+    
+    ![policy-integrity-shield in violation status overview ](../images/policy-violation-after-init-status.PNG)
+     
+    e. Click status tab in policy-integrity-shield policy page and confirm the violation as below:
+       
+    ![policy-integrity-shield in violation status detail](../images/policy-violation-after-init-status-detail.PNG)
+
+   
+ 5. Edit `community/CM-Configuration-Management/policy-integrity-shield.yaml`
+    
+    a. change remediationAction from `inform` to `enforce` as shown below
+    
+    ![policy-integrity-shield change remediationAction ](../images/policy-violation-after-init-edit.PNG)
+    
+    b. configure the placement rule to select which ACM managed cluster(s) in which IShiled should be enabled.
+    
+    ![policy-integrity-shield change placementrule ](../images/policy-violation-after-init-edit-placement.PNG)
+    
+    Check the below example for finding the appropriate labels ACM managed cluster(s) 
+       
+    ![ACM Managed Cluster Labels](../images/acm-managed-cluster-label.PNG)
+    
+ 6. Edit `community/CM-Configuration-Management/policy-integrity-shield-events.yaml`
+ 
+    a. configure the placement rule to select which ACM managed cluster(s) in which IShiled should be enabled.
+    
+    ![policy-integrity-shield change placementrule ](../images/policy-violation-after-init-edit-placement.PNG)
+    
+    Check the below example for finding the appropriate labels ACM managed cluster(s) 
+       
+    ![ACM Managed Cluster Labels](../images/acm-managed-cluster-label.PNG)
+ 
+ 7. Sign `community/CM-Configuration-Management/policy-integrity-shield.yaml` policy
+ 
+    [Command]
+    ```
+    curl -s  https://raw.githubusercontent.com/open-cluster-management/integrity-shield/master/scripts/gpg-annotation-sign.sh | bash -s -\
+        signer@enterprise.com \
+        community/CM-Configuration-Management/policy-integrity-shield.yaml
+    ```
+ 8. Sign `community/CM-Configuration-Management/policy-integrity-shield-events.yaml` policy
+ 
+    [Command]
+    ```
+    curl -s  https://raw.githubusercontent.com/open-cluster-management/integrity-shield/master/scripts/gpg-annotation-sign.sh | bash -s \
+        signer@enterprise.com \
+        community/CM-Configuration-Management/policy-integrity-shield-events.yaml
+    ```
+ 9. Check if two annotations started with "integrityshield.io" are attached to the policy files
+    a. check `community/CM-Configuration-Management/policy-integrity-shield.yaml`
+ 
+    [Command]
+    ```
+    cat community/CM-Configuration-Management/policy-integrity-shield.yaml | grep 'integrityshield.io/' | wc -l
+    ```
+    [Result]
+    ```
+    7
+    ```
+    b. check `community/CM-Configuration-Management/policy-integrity-shield-events.yaml`
+    [Command]
+    ```
+    cat community/CM-Configuration-Management/policy-integrity-shield-events.yaml | grep 'integrityshield.io/' | wc -l
+    ```
+    [Result]
+    ```
+    7
+    ```    
+ 6. Commit your changes in `community/CM-Configuration-Management/policy-integrity-shield.yaml` to your cloned policy-collection git repository.
+
+   [Command]
+   ```
+   git add community/CM-Configuration-Management/policy-integrity-shield.yaml
+   git add community/CM-Configuration-Management/policy-integrity-shield-events.yaml
+   git commit -m 'policy-integrity-shield.yaml and policy-integrity-shield-events.yaml  with signature'
+   git push origin master
+   ```
+   
+   [Result]
+   
+   
+
     
 ### Expected Result:
  
