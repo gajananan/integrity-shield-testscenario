@@ -5,7 +5,7 @@
 
 ### Prerequisite: 
 - Policy collection is already clone locally in signing host as described in [doc](../prerequisite-setup/GIT_CLONE_POLICY_COLLECTION.md)
-- IShield protection is enabled as described in [doc](../install-scenarios/DEPLOY_ISHIELD.md), if you have not done yet.
+- IShield protection is enabled as described in [doc](../01_install-scenarios/02_ENABLE_ISHIELD.md), if you have not done yet.
  
 ### Action Steps:
 
