@@ -6,7 +6,7 @@
 
 ### How to perform test: 
 
-- Execute the commands shown under `[Command]` in the following test scenarios.
+- Copy the entire command string shown under `[Command]` and execute in the console in the following test scenarios.
 
 - Confirm the results shown under `[Result]` of executing a command in the following test scenarios.
  
