@@ -6,9 +6,9 @@
 
 ### How to perform test: 
 
-Execute the commands shown under `[Command]` in the following test scenarios.
+- Execute the commands shown under `[Command]` in the following test scenarios.
 
-Confirm the results shown under `[Result]` of executing a command in the following test scenarios.
+- Confirm the results shown under `[Result]` of executing a command in the following test scenarios.
  
 ### Action Steps:
 
