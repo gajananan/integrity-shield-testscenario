@@ -125,14 +125,14 @@ Compelete the following five steps:
     -  Create policies under stable directory in the ACM hub cluster in the newly created namespace `policy-stable`.
     
     [Parameters]
-    - Cloned repository URL (-u): https://github.com/<YOUR-ORG-NAME>/policy-collection.git 
-    - Resource Prefix (-a): demo-stable-policies 
-    - Git Path (-p): stable
-    - Cluster namespace (-n) : policy-stable 
+    - Cloned repository URL (-u): `https://github.com/<YOUR-ORG-NAME>/policy-collection.git`
+    - Resource Prefix (-a): `demo-stable-policies `
+    - Git Path (-p): `stable`
+    - Cluster namespace (-n) : `policy-stable `
  
     [Command]
     ```
-    cd policy-collection/deploy
+    cd deploy
     bash ./deploy.sh -u https://github.com/<YOUR-ORG-NAME>/policy-collection.git -a demo-stable-policies -p stable -n policy-stable
     ```
     
