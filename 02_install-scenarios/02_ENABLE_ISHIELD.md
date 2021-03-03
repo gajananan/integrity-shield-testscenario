@@ -6,9 +6,12 @@
 ### Prerequisite: 
  - An ACM Hub Cluster and at least a one ACM Managed Cluster attached to it.
  - Policy collection is already cloned locally in signing host as described in [doc](../prerequisite-setup/GIT_CLONE_POLICY_COLLECTION.md)
- - Complete verification key setup in [doc](VERIFICATION_KEY_SETUP.md)
+ - Complete verification key setup in [doc](VERIFICATION_KEY_SETUP.md) (Complete this step if you have not done it in [step](VERIFICATION_KEY_SETUP.md))
  
 ### Action Steps:
+ 
+ Compelete the following seven steps.
+ 
  [OC-HUB]
  1. Connect via oc to an ACM hub cluster
     
