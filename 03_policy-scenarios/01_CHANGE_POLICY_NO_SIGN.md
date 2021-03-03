@@ -1,17 +1,17 @@
 # Change a Policy without Signature
 
-### Goal:
+## Goal:
 - User can not update a policy deployed in an ACM Hub/Managed Clusters without a proper signature  attached.
 
-### Prerequisite: 
-- Policy collection is already clone locally in signing host as described in [doc](../prerequisite-setup/GIT_CLONE_POLICY_COLLECTION.md)
-- IShield protection is enabled as described in [doc](../01_install-scenarios/02_ENABLE_ISHIELD.md), if you have not done yet.
+## Prerequisite: 
+- Policy collection is already clone locally in signing host (already done in [prerequisite-step](../prerequisite-setup/GIT_CLONE_POLICY_COLLECTION.md))
+- Integrity Shield protection is enabled (already done in [install-scenarios-step](../01_install-scenarios/02_ENABLE_ISHIELD.md))
  
-### Action Steps:
+## Action Steps:
 
 Complete the following three steps:
 
-1. Go to the directory of your cloned policy collection Git repository in the signing host
+### 1. Go to the directory of your cloned policy collection Git repository in the signing host
 
    [Command]
    ```
@@ -19,7 +19,7 @@ Complete the following three steps:
    ```
    
    
-2. Edit the policy file `community/SC-System-and-Communications-Protection/policy-ocp4-certs.yaml`
+### 2. Edit the policy file `community/SC-System-and-Communications-Protection/policy-ocp4-certs.yaml`
    
    In line 52, change `minimumDuration` from `400h` to `500h`
 
@@ -29,7 +29,7 @@ Complete the following three steps:
    500h
    ```
    
-3. Commit your changes in policy-ocp4-certs.yaml to your cloned policy-collection git repository.
+### 3. Commit your changes in policy-ocp4-certs.yaml to your cloned policy-collection git repository.
 
    [Command]
    ```
@@ -40,10 +40,9 @@ Complete the following three steps:
    
  
    
-### Expected Result:
+## Expected Result:
 
-Above changes in Git repository will be synced by ACM Hub Cluster to update the changes in policy.  
-After a minute, continue to check the expected results.
+continue to check the expected results after a minute (Above changes in Git repository will be synced by ACM Hub Cluster to update the changes in policy.)
     
 [WebConsle-HUB]
 
@@ -56,9 +55,16 @@ After a minute, continue to check the expected results.
     
 5. Click  status tab in `policy-integrity-shield-events`  policy page and confirm the violation as below:
     
+   In the template list
+   - `policy-integrity-shield-admission` - `Not compliant`
+
   ![Policy Violation Status](../images/policy-integrity-shield-status-violation-statys.PNG) 
   
 6. Click  View details link in the violation entry listed and check details page for violations message as below.
+  
+   Confirm the following status
+   - `Compliant` - `NonCompliant`
+   - `Details` - `events exist: ishield-deny-update-policy-policy-community.policy-cert.ocp4` is found the in `json` message.
   
   ![Policy Violation Status Detail](../images/policy-integrity-shield-status-violation-status-detail.PNG)  
    
@@ -74,5 +80,7 @@ After a minute, continue to check the expected results.
    ```
    
    [Result]
+   
+   Confirm at least one event that contains a message `Signature Verification requrid for this request, but no signature is found. Please attach a valid signature.`, is found in the event list in the console as shown below.
    
    ![Block Events](../images/ishield-log.PNG)
