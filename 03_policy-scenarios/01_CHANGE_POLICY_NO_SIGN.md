@@ -22,10 +22,15 @@ Complete the following three steps:
 ### 2. Edit the policy file `community/SC-System-and-Communications-Protection/policy-ocp4-certs.yaml`
    
    In line 52, change `minimumDuration` from `400h` to `500h`
-
-   [Result]
+   
+   Confirm your changes are saved in the file:
+   
+   [Command]
    ```
    cat community/SC-System-and-Communications-Protection/policy-ocp4-certs.yaml| grep minimumDuration | head -n 1
+   ```
+   [Result]
+   ```
    500h
    ```
    
