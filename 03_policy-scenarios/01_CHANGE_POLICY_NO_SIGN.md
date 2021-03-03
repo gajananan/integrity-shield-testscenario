@@ -39,8 +39,8 @@
    
 ### Expected Result:
 
-    Above changes in Git repository will be synced by ACM Hub Cluster to update the changes in policy.  
-    After a minute, continue to check the expected results.
+Above changes in Git repository will be synced by ACM Hub Cluster to update the changes in policy.  
+After a minute, continue to check the expected results.
     
 [WebConsle-HUB]
 
@@ -72,4 +72,4 @@
    
    [Result]
    
-  ![Block Events](../images/ishield-log.PNG)
+   ![Block Events](../images/ishield-log.PNG)
