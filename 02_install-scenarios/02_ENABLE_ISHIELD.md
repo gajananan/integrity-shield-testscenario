@@ -143,19 +143,19 @@
     ```
     [Result]
     ```
-    7
+    8
     ```    
  6. Commit your changes in `community/CM-Configuration-Management/policy-integrity-shield.yaml` to your cloned policy-collection git repository.
 
-   [Command]
-   ```
-   git add community/CM-Configuration-Management/policy-integrity-shield.yaml
-   git add community/CM-Configuration-Management/policy-integrity-shield-events.yaml
-   git commit -m 'policy-integrity-shield.yaml and policy-integrity-shield-events.yaml  with signature'
-   git push origin master
-   ```
+    [Command]
+    ```
+    git add community/CM-Configuration-Management/policy-integrity-shield.yaml
+    git add community/CM-Configuration-Management/policy-integrity-shield-events.yaml
+    git commit -m 'policy-integrity-shield.yaml and policy-integrity-shield-events.yaml  with signature'
+    git push origin master
+    ```
    
-   [Result]
+    [Result]
    
    
 
