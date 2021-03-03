@@ -1,15 +1,15 @@
 # Prepare Test Enviornment to test IShield with RHACM
 
-### Goal:
+## Goal:
 - User can setup a test environment in which IShield can be tested with RHACM.
 
-### Prerequisite: 
+## Prerequisite: 
 - Minimum two OpenShift Clusters: ACM HUB Cluster and a ACM Managed Cluster attached to it.
 - Host Machine (to clone ACM policy collection locally and sign and deploy policies to to ACM Hub Cluster)
 - OC CLI enabled on Host machine
 - GPG installed on Host machine
  
-### Action Steps:
+## Action Steps:
 
 Complete the following steps before start testing:
 
@@ -19,6 +19,6 @@ Complete the following steps before start testing:
 4. Choose a signer email (e.g signer@enterprise.com)
 5. Setup GPG keys as described in [doc](../prerequisite-setup/GPG_KEY_SETUP.md)
 
-### Simple Illustration of a Test Environoment
+## Simple Illustration of a Test Environoment
 
 ![Test Environoment](../images/test-env.PNG)
