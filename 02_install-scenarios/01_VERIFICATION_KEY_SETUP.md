@@ -47,11 +47,11 @@
     [Command]  
     
     ```
-    curl -s  https://raw.githubusercontent.com/open-cluster-management/integrity-shield/master/scripts/ACM/acm-verification-key-setup.sh | bash -s - \
-    --namespace integrity-shield-operator-system  \
-    --secret keyring-secret  \
-    --path /tmp/pubring.gpg \
-    --label environment=dev  |  oc apply -f -
+    curl -s  https://raw.githubusercontent.com/open-cluster-management/integrity-shield/master/scripts/ACM/acm-verification-key-setup.sh | bash -s -\
+          --namespace integrity-shield-operator-system  \
+          --secret keyring-secret  \
+          --path /tmp/pubring.gpg \
+          --label environment=dev  |  oc apply -f -
     ```
     
     [Result]
