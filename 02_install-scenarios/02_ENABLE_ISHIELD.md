@@ -74,20 +74,24 @@
 
    a. Connect to ACM Hub Cluster WebConsole and go to polices page.
     
-   b. Search for `policy-integrity-shield` in Find Policies as shown below:
+   b. Search for `policy-integrity-shield` in Find Policies as shown below and click `policy-integrity-shield` policy.:
     
    ![policy-integrity-shield](../images/policy-violation-after-init.PNG)
     
-    
-   c. Click `policy-integrity-shield` policy.
-    
+       
    d. Check if `policy-integrity-shield` is in violation  state (Cluster violation -> red) as shown below.
     
    ![policy-integrity-shield in violation status overview ](../images/policy-violation-after-init-status.PNG)
      
      
-   e. Click status tab in policy-integrity-shield policy page and confirm the violation as below:
-       
+   e. Click status tab in policy-integrity-shield policy page and confirm the violation:
+     
+   Confirm the following status in the Templates List shown below:
+   - `policy-integrity-shield-og` - `Not Compliant`
+   - `policy-integrity-shield-sub` - `Not Compliant`
+   - `policy-integrity-shield-cr` - `Not Compliant`
+   - `policy-integrity-shield-namespace` - `Compliant`
+   
    ![policy-integrity-shield in violation status detail](../images/policy-violation-after-init-status-detail.PNG)
 
    
@@ -107,9 +111,9 @@
     
 ### 6. Edit `community/CM-Configuration-Management/policy-integrity-shield-events.yaml`
  
-   a. configure the placement rule to select which ACM managed cluster(s) in which IShiled should be enabled.
+   configure the placement rule to select which ACM managed cluster(s) in which IShiled should be enabled.
     
-   (follow the same as step 5)
+   (follow the same instruction in step 5)
  
 ### 7. Run following two commands to sign changed polices
    
@@ -172,19 +176,27 @@ Continue to check the expected results after a minute (Above changes in Git repo
    - Click  `policy-integrity-shield`  policy and go to status page. 
    - Check the complaint status which means Integrity Shield is successfully enabled in selected ACM managed clusters.
     
+     Confirm the following status in the Templates List shown below:
+      - `policy-integrity-shield-og` - `Compliant`
+      - `policy-integrity-shield-sub` - `Compliant`
+      - `policy-integrity-shield-cr` - `Compliant`
+      - `policy-integrity-shield-namespace` - `Compliant`
+    
    ![Policy Integrity Shield Status](../images/policy-integrity-shield-status.PNG) 
     
-## 2. Confirm IShield is successfully enabled in ACM Managed Cluster(s)
+## 2. Confirm Integrity Shield is successfully enabled in ACM Managed Cluster(s)
  
    [OC-MANAGED]
     
    Switch to ACM Hub Managed Cluster and, run the following `OC` command
+   
    [Command]
    ```
    oc get pod -n integrity-shield-operator-system
    ```
     
    Confirm the following two pods are in `Running` status
+   
    [Result]
    ```
    NAME                                                           READY       STATUS    RESTARTS   AGE
