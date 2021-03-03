@@ -72,15 +72,18 @@
     [WebConsole-HUB]
 
     a. Connect to ACM Hub Cluster WebConsole and go to polices page.
+    
     b. Search for `policy-integrity-shield` in Find Policies as shown below:
     
     ![policy-integrity-shield](../images/policy-violation-after-init.PNG)
     
     
     c. Click `policy-integrity-shield` policy.
+    
     d. Check if `policy-integrity-shield` is in violation  state (Cluster violation -> red) as shown below.
     
     ![policy-integrity-shield in violation status overview ](../images/policy-violation-after-init-status.PNG)
+     
      
     e. Click status tab in policy-integrity-shield policy page and confirm the violation as below:
        
@@ -160,8 +163,8 @@
     
 ### Expected Result:
  
-Above changes in Git repository will be synced by ACM Hub Cluster to update the changes in policy.
-After a minute, continue to check the expected results.
+Continue to check the expected results after a minute (Above changes in Git repository will be synced by ACM Hub Cluster to update the changes in policy.)
+
 
  1. Confirm polices are successfully created in ACM Hub Cluster
     - Connect to ACM Hub Cluster WebConsole and go to polices page.
