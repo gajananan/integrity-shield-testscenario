@@ -35,10 +35,7 @@
    git push origin master
    ```
    
-   [Result]
-   
-   <ScreenShot>
-   
+ 
    
 ### Expected Result:
 
