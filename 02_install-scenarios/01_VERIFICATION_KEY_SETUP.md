@@ -9,6 +9,9 @@
 
 
 ### Action Steps:
+
+ Complete the following three steps.
+ 
  [OC-HUB]
  1. Connect via oc to an ACM hub cluster
     
@@ -39,19 +42,23 @@
  3. Deploy verification key to an ACM hub cluster so that it can propagate to a managed cluster(s).
 
     [Parameters]
-      - secret name: `keyring-secret` 
-      - namespace:  `integrity-shield-operator-system` 
-      - pubring file:  /tmp/pubring.gpg
-      - placement rule:   environment:dev (Note: Change this)
+     - secret name: `keyring-secret` 
+     - namespace:  `integrity-shield-operator-system` 
+     - pubring file:  /tmp/pubring.gpg
+     - placement rule:   environment=dev (Note: Change placement rule based on label used for identifying ACM managed cluster)
       
+      Check the below example for finding the appropriate labels ACM managed cluster(s) 
+       
+      ![ACM Managed Cluster Labels](../images/acm-managed-cluster-label.PNG)
+    
     [Command]  
     
     ```
-    curl -s  https://raw.githubusercontent.com/open-cluster-management/integrity-shield/master/scripts/ACM/acm-verification-key-setup.sh | bash -s -\
-          --namespace integrity-shield-operator-system  \
-          --secret keyring-secret  \
-          --path /tmp/pubring.gpg \
-          --label environment=dev  |  oc apply -f -
+    curl -s  https://raw.githubusercontent.com/open-cluster-management/integrity-shield/master/scripts/ACM/acm-verification-key-setup.sh | bash -s - \
+    --namespace integrity-shield-operator-system  \
+    --secret keyring-secret  \
+    --path /tmp/pubring.gpg \
+    --label environment=dev  |  oc apply -f -
     ```
     
     [Result]
