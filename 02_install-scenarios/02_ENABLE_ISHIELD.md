@@ -36,16 +36,16 @@
  
 ### 3. Enable policies on an ACM managed cluster.
     
-    Switch to ACM Hub cluster and create a new namespace (e.g. policy-community) in the ACM hub cluster to deploy policy-integrity-shield
+   Switch to ACM Hub cluster and create a new namespace (e.g. policy-community) in the ACM hub cluster to deploy policy-integrity-shield
     
    [Command]
    ```
-    oc create ns policy-community
+   oc create ns policy-community
    ```
     
    [Result]
    ```
-    namespace/policy-community created
+   namespace/policy-community created
    ```
    Create policy-integrity-shield in the ACM hub cluster in newly created namespace.
     
@@ -62,8 +62,8 @@
     
    [Result] 
    ```
-    channel.apps.open-cluster-management.io/demo-community-policies-chan created
-    subscription.apps.open-cluster-management.io/demo-community-policies-sub created
+   channel.apps.open-cluster-management.io/demo-community-policies-chan created
+   subscription.apps.open-cluster-management.io/demo-community-policies-sub created
    ```
     
    Continue to the following steps above after a minute (above changes in Git repository will be synced by ACM Hub Cluster to update the changes in policy.)
