@@ -1,7 +1,7 @@
-# Prepare Test Enviornment to test IShield with RHACM
+# Prepare Test Enviornment to test Integrity Shield with RHACM
 
 ## Goal:
-- User can setup a test environment in which IShield can be tested with RHACM.
+- User can setup a test environment in which Integrity Shield can be tested with RHACM.
 
 ## Prerequisite: 
 - Minimum two OpenShift Clusters: ACM HUB Cluster and a ACM Managed Cluster attached to it.
