@@ -4,7 +4,7 @@
 - User can setup a verification key to an ACM managed cluster.
 
 ### Prerequisite: 
-- An ACM Hub Cluster and at least one ACM Managed Cluster attached to it. (already done in [prepare step](../01_tester-setup/PREPARE_TEST_ENV.md) )
+- An ACM Hub Cluster and at least one ACM Managed Cluster attached to it. (already done in [prepare step](../01_tester-setup/PREPARE_TEST_ENV.md))
 - A pair of GPG Keys are setup as described in [doc](../prerequisite-setup/GPG_KEY_SETUP.md). (already done in [prerequisite setup](../prerequisite-setup/GPG_KEY_SETUP.md))
 
 
@@ -13,7 +13,8 @@
  Complete the following three steps.
  
  [OC-HUB]
- 1. Connect via oc to an ACM hub cluster
+ 
+ 1. Connect via `OC` to an ACM Hub cluster
     
     [Command]
     ```
@@ -67,10 +68,10 @@
     
 ### Expected Result:
 
- After a minute, the above steps will create  secret (that includes the verification key) in selected ACM managed cluster(s), so you can start confirming results below.
+ Confirm the results below after a minute.
  
  [OC-HUB]
- 1. Confirm secret is successfully created in ACM Hub Cluster
+ 1. Confirm a secret with name `keyring-secret` is successfully created in ACM Hub Cluster as shown below.
  
     [Command]
   
@@ -86,7 +87,7 @@
     
  [OC-MANAGED]  
  
- 2. Switch connection to managed cluster and confirm secret is successfully propagated to  ACM Managed Cluster(s)
+ 2. Switch connection to an ACM Managed cluster and confirm a secret with name `keyring-secret` is created.
  
     [Command] 
     ```
