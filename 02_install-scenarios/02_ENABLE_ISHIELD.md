@@ -1,39 +1,40 @@
 # Enable IShield Protection in an ACM Managed Cluster(s)
 
-### Goal:
+## Goal:
 - User can enable IShield protection to an ACM managed cluster.
 
-### Prerequisite: 
+## Prerequisite: 
  - An ACM Hub Cluster and at least a one ACM Managed Cluster attached to it.
  - Policy collection is already cloned locally in signing host as described in [doc](../prerequisite-setup/GIT_CLONE_POLICY_COLLECTION.md)
  - Complete verification key setup in [doc](VERIFICATION_KEY_SETUP.md) (Complete this step if you have not done it in [step](VERIFICATION_KEY_SETUP.md))
  
-### Action Steps:
+## Action Steps:
  
  Complete the following ten steps.
  
- [OC-HUB]
  
- 1. Connect via oc to an ACM hub cluster
+### 1. Connect via oc to an ACM hub cluster
     
     [Command]
     ```
     oc login --token=xxxxxxxxxxxxxxxxx  --server=https://api.hub..openshiftv4test.com:6443
     ```
+    
     [Result]
     ```
     Logged into "https://api.hub.openshiftv4test.com:6443" as "kube:admin" using the token provided.
     You have access to 65 projects, the list has been suppressed. You can list all projects with ' projects'
     Using project "default".
     ```
- 2. Go to the directory of your cloned policy collection Git repository in the signing host
+    
+### 2. Go to the directory of your cloned policy collection Git repository in the signing host
 
     [Command]
     ```
     cd <SIGING HOST DIR>/policy-collection
     ```
  
- 3. Enable policies on an ACM managed cluster.
+### 3. Enable policies on an ACM managed cluster.
     
     Switch to ACM Hub cluster and create a new namespace (e.g. policy-community) in the ACM hub cluster to deploy policy-integrity-shield
     
@@ -67,7 +68,7 @@
     
     Continue to the following steps above after a minute (above changes in Git repository will be synced by ACM Hub Cluster to update the changes in policy.)
    
- 4. Confirm the policy status in  ACM Hub Web Console.
+### 4. Confirm the policy status in  ACM Hub Web Console.
  
     [WebConsole-HUB]
 
@@ -90,7 +91,7 @@
     ![policy-integrity-shield in violation status detail](../images/policy-violation-after-init-status-detail.PNG)
 
    
- 5. Edit `community/CM-Configuration-Management/policy-integrity-shield.yaml` in your local host machine in `policy-collection`
+### 5. Edit `community/CM-Configuration-Management/policy-integrity-shield.yaml` in your local host machine in `policy-collection`
     
     a. change remediationAction from `inform` to `enforce` as shown below
     
@@ -104,13 +105,13 @@
        
     ![ACM Managed Cluster Labels](../images/acm-managed-cluster-label.PNG)
     
- 6. Edit `community/CM-Configuration-Management/policy-integrity-shield-events.yaml`
+### 6. Edit `community/CM-Configuration-Management/policy-integrity-shield-events.yaml`
  
     a. configure the placement rule to select which ACM managed cluster(s) in which IShiled should be enabled.
     
        (follow the same as step 5)
  
- 7. Run following twp commands to sign changed polices
+### 7. Run following twp commands to sign changed polices
    
     [Command]
     ```
@@ -125,7 +126,7 @@
         signer@enterprise.com \
         community/CM-Configuration-Management/policy-integrity-shield-events.yaml
     ```
- 9. Run the following commands
+### 9. Run the following commands
 
     [Command]
     ```
@@ -145,7 +146,7 @@
     8
     ```    
     
- 6. Commit your changes in `community/CM-Configuration-Management/policy-integrity-shield.yaml` to your cloned policy-collection git repository.
+### 10. Commit your changes in `community/CM-Configuration-Management/policy-integrity-shield.yaml` to your cloned policy-collection git repository.
 
     [Command]
     ```
@@ -156,7 +157,7 @@
     ```
 
     
-### Expected Result:
+## Expected Result:
  
 Continue to check the expected results after a minute (Above changes in Git repository will be synced by ACM Hub Cluster to update the changes in policy.)
 
