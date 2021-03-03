@@ -6,9 +6,12 @@
 ### Prerequisite: 
  - An ACM Hub Cluster and at least a one ACM Managed Cluster attached to it.
  - Policy collection is already cloned locally in signing host as described in [doc](../prerequisite-setup/GIT_CLONE_POLICY_COLLECTION.md)
- - Complete verification key setup in [doc](VERIFICATION_KEY_SETUP.md)
+ - Complete verification key setup in [doc](VERIFICATION_KEY_SETUP.md) (Complete this step if you have not done it in [step](VERIFICATION_KEY_SETUP.md))
  
 ### Action Steps:
+ 
+ Compelete the following seven steps.
+ 
  [OC-HUB]
  1. Connect via oc to an ACM hub cluster
     
@@ -69,7 +72,7 @@
    [Result]
    
  
- 6. Enable policy-integrity-shield on an ACM managed cluster.
+ 7. Enable policy-integrity-shield on an ACM managed cluster.
     
     [OC-HUB]  
     - Switch to ACM Hub cluster and create a new namespace (e.g. policy-community) in the ACM hub cluster to deploy policy-integrity-shield
@@ -93,7 +96,7 @@
  
     [Command]
     ```
-    cd policy-collection/deploy
+    cd deploy
     bash ./deploy.sh -u https://github.com/<YOUR-ORG-NAME>/policy-collection.git -a demo-community-policies -p community -n policy-community
     ```
     
