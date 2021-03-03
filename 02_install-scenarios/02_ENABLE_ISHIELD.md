@@ -154,10 +154,6 @@
     git commit -m 'policy-integrity-shield.yaml and policy-integrity-shield-events.yaml  with signature'
     git push origin master
     ```
-   
-    [Result]
-   
-   
 
     
 ### Expected Result:
