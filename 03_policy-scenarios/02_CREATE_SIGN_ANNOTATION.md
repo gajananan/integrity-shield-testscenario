@@ -5,7 +5,7 @@
 
 ### Prerequisite: 
 - Policy collection is already clone locally in signing host as described in [doc](../prerequisite-setup/GIT_CLONE_POLICY_COLLECTION.md)
-- Verification key is already setup as described in [doc](../prerequisite-setup/GPG_KEY_SETUP.md)
+- Setup GPG keys as described in [doc](../prerequisite-setup/GPG_KEY_SETUP.md), if you have not done yet.
  
 ### Action Steps:
 1. Go to the directory of your cloned policy collection Git repository in the signing host
