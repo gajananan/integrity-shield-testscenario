@@ -5,9 +5,12 @@
 
 ### Prerequisite: 
 - Policy collection is already cloned locally in signing host as described in [doc](../prerequisite-setup/GIT_CLONE_POLICY_COLLECTION.md)
-- IShield protection is enabled as described in [doc](../install-scenarios/DEPLOY_ISHIELD.md)
+- IShield protection is enabled as described in [doc](../install-scenarios/DEPLOY_ISHIELD.md). complete this step if you have done yet, before proceeding.
  
 ### Action Steps:
+
+Complete the following six steps:
+
 1. Create a another signer key (with different email address e.g. `invalid_signer@enterprise.com`) as described in [doc](../prerequisite-setup/GPG_KEY_SETUP.md)
    This signer key must be different from the one setup in [doc] (../install-scenarios/VERIFICATION_KEY_SETUP.md)
    
@@ -22,9 +25,13 @@
    
    In line 52, change `minimumDuration` from current value to different one (e.g. `700h`)
 
-   [Result]
+   [Command]
    ```
    cat community/SC-System-and-Communications-Protection/policy-ocp4-certs.yaml| grep minimumDuration | head -n 1
+
+   ```
+   [Result]
+   ```
    700h
    ```
     
@@ -36,9 +43,13 @@
         community/SC-System-and-Communications-Protection/policy-ocp4-certs.yaml
     ```
 5. Check if two annotations started with "integrityshield.io" are attached to community/CM-Configuration-Management/policy-integrity-shield.yaml
- 
+    
+    [Command]
     ```
     cat community/SC-System-and-Communications-Protection/policy-ocp4-certs.yaml | grep 'integrityshield.io/' | wc -l
+    ```
+    [Result]
+    ```
     3
     ```
     
@@ -50,10 +61,6 @@
    git commit -m 'policy-ocp4-certs.yaml with signature`
    git push origin master
    ```
-   
-   [Result]
-   
-   <ScreenShot>
    
    
 ### Expected Result:
