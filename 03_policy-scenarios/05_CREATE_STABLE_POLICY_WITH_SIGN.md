@@ -20,9 +20,9 @@ Compelete the following seven steps:
    
 ### 2. Create the following signing script under `deploy` directory in the cloned `policy-collection` repository in the host machine.
 
-   [Command]
+   Save the following script in a file deploy/sign-policy.sh
+   
    ```
-    cat > deploy/sign-policy.sh
     #!/bin/bash
     CMDNAME=`basename $0`
     if [ $# -ne 2 ]; then
@@ -109,7 +109,7 @@ Compelete the following seven steps:
    [Command]
    ```
    git add stable
-   git commit -m 'stable polices have been signed`
+   git commit -m 'stable polices have been signed'
    git push origin master
    ```
     
@@ -152,8 +152,7 @@ Continue to check the expected results after a minute (Above changes in Git repo
 [WebConsle-HUB]
 
 1. Connect to ACM Hub Cluster WebConsole and go to polices page.
-2. Search for `policy-certificate`  in Find Policies.  
-3. Click  `policy-certificate`  policy. 
+2. Search for `policy-certificate`  in Find Policies and Click  `policy-certificate`  policy. 
 4. Check if  `policy-certificate` is in compliant state (Cluster violation -> green) as show below.
      
   ![Policy Certificate](../images/policy-certificate-compliant.PNG)
