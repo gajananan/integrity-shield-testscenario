@@ -4,8 +4,8 @@
 - User can deploy [stable policies](https://github.com/open-cluster-management/policy-collection/tree/master/stable) in an ACM Hub/Managed Clusters with valid signatures attached.
 
 ### Prerequisite: 
-- Policy collection is already cloned locally in signing host as described in [doc](../prerequisite-setup/GIT_CLONE_POLICY_COLLECTION.md)
-- IShield protection is enabled as described in [doc](../install-scenarios/DEPLOY_ISHIELD.md).  complete this step if you have done yet, before proceeding.
+- Policy collection is already cloned locally in signing host (already done in [prerequisite-setup-step](../prerequisite-setup/GIT_CLONE_POLICY_COLLECTION.md))
+- Integrity Shield protection is enabled (already done in [install-scenarios-step](../install-scenarios/DEPLOY_ISHIELD.md)). 
  
 ### Action Steps:
 
@@ -18,7 +18,7 @@ Compelete the following five steps:
    cd <SIGING HOST DIR>/policy-collection
    ```
    
-2. Create signing script under `deploy` directory in the cloned policy-collection 
+2. Create the following signing script under `deploy` directory in the cloned `policy-collection` repository in the host machine.
 
     [Command]
     ```
@@ -57,13 +57,16 @@ Compelete the following five steps:
     ```
     
     Run the following script to sign all the policies in `stable` directory with signer `signer@enterprise.com`
+    
     [Command]
     ```
     ./deploy/sign-policy.sh signer@enterprise.com stable/
     ```
     
     
-    [Result] The following policy files under `stable` directory have been annotated with signature
+    Confirm the following policy files under `stable` directory have been modified.
+    
+    [Result] 
     ```
     git status
     On branch master
@@ -87,7 +90,9 @@ Compelete the following five steps:
     
     ```
     
-3.  Check if annotations are attached to policy file. For example, check if two annotations started with "integrityshield.io" are attached to `stable/AC-Access-Control/policy-limitclusteradmin.yaml`
+3.  Check if annotations are attached to a policy file. 
+
+    For example, check if two annotations started with "integrityshield.io" are attached to `stable/AC-Access-Control/policy-limitclusteradmin.yaml`
     
     [Command]
     ```
@@ -98,7 +103,8 @@ Compelete the following five steps:
     ```
     6
     ```
-4. Commit your changes in policy-ocp4-certs.yaml to your cloned policy-collection git repository.
+    
+4. Commit your changes in `policy-ocp4-certs.yaml` to your cloned policy-collection git repository.
 
     [Command]
     ```
@@ -143,8 +149,7 @@ Compelete the following five steps:
     ```
 ### Expected Result:
 
-Above changes in Git repository will be synced by ACM Hub Cluster to update the changes in policy.  
-After a minute, continue to check the expected results.
+Continue to check the expected results after a minute (Above changes in Git repository will be synced by ACM Hub Cluster to update the changes in policy.)
     
 [WebConsle-HUB]
 
