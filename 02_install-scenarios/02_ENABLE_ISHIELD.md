@@ -111,7 +111,7 @@
     
    (follow the same as step 5)
  
-### 7. Run following twp commands to sign changed polices
+### 7. Run following two commands to sign changed polices
    
    [Command]
    ```
@@ -126,7 +126,7 @@
         signer@enterprise.com \
         community/CM-Configuration-Management/policy-integrity-shield-events.yaml
    ```
-### 9. Run the following commands
+### 9. Run the following two commands and confirm the results.
 
    [Command]
    ```
