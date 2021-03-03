@@ -48,13 +48,12 @@
     -  Create policy-integrity-shield in the ACM hub cluster in newly created namespace.
     
     [Parameters]
-    - Cloned repository URL (-u): https://github.com/<YOUR-ORG-NAME>/policy-collection.git
-                                  Change `<YOUR-ORG-NAME>` to your Git Organization, when executing the following command
-    - Resource Prefix (-a): demo-community-policies 
-    - Git Path (-p): community
-    - Cluster namespace (-n) : policy-community 
+    - Cloned repository URL (-u): `https://github.com/<YOUR-ORG-NAME>/policy-collection.git`                                 
+    - Resource Prefix (-a): `demo-community-policies`
+    - Git Path (-p): `community`
+    - Cluster namespace (-n): `policy-community`
  
-    [Command]
+    [Command] Change `<YOUR-ORG-NAME>` to your Git Organization, when executing the following command
     ```
     cd deploy
     bash ./deploy.sh -u https://github.com/<YOUR-ORG-NAME>/policy-collection.git -a demo-community-policies -p community -n policy-community
