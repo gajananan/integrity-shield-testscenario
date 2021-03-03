@@ -1,24 +1,24 @@
 # Change a Policy with Signature
 
-### Goal:
+## Goal:
 - User can not update a policy deployed in an ACM Hub/Managed Clusters without a proper signature  attached.
 
-### Prerequisite: 
+## Prerequisite: 
 - Policy collection is already cloned locally in signing host (already done in [prerequisite-setup](../prerequisite-setup/GIT_CLONE_POLICY_COLLECTION.md))
 - Integrity Shield protection is enabled. (already done in [install-scenarios](../install-scenarios/DEPLOY_ISHIELD.md))
  
-### Action Steps:
+## Action Steps:
 
 Complete the following five steps:
 
-1. Go to the directory of your cloned policy collection Git repository in the signing host
+### 1. Go to the directory of your cloned policy collection Git repository in the signing host
 
    [Command]
    ```
    cd <SIGING HOST DIR>/policy-collection
    ```
    
-2. Edit the policy file `community/SC-System-and-Communications-Protection/policy-ocp4-certs.yaml`
+### 2. Edit the policy file `community/SC-System-and-Communications-Protection/policy-ocp4-certs.yaml`
    
    In line 52, change `minimumDuration` from current value to different one (e.g. `600h`)
 
@@ -33,27 +33,28 @@ Complete the following five steps:
    600h
    ```
     
-3. Run the following command to sign `community/SC-System-and-Communications-Protection/policy-ocp4-certs.yaml` policy
- 
-    ```
-    curl -s  https://raw.githubusercontent.com/open-cluster-management/integrity-shield/master/scripts/gpg-annotation-sign.sh | bash -s \
+### 3. Run the following command to sign policy file
+    
+   [Command] 
+   ```
+   curl -s  https://raw.githubusercontent.com/open-cluster-management/integrity-shield/master/scripts/gpg-annotation-sign.sh | bash -s \
         signer@enterprise.com \
         community/SC-System-and-Communications-Protection/policy-ocp4-certs.yaml
-    ```
-4. Run the the following command 
+   ```
+### 4. Run the the following command 
  
-    Confirm two annotations started with "integrityshield.io" are attached to community/CM-Configuration-Management/policy-integrity-shield.yaml
+   Confirm two annotations started with "integrityshield.io" are attached to community/CM-Configuration-Management/policy-integrity-shield.yaml
  
-    [Command]
-    ```
-    cat community/SC-System-and-Communications-Protection/policy-ocp4-certs.yaml | grep 'integrityshield.io/' | wc -l
-    ```
-    [Result]
-    ```
-    3
-    ```
+   [Command]
+   ```
+   cat community/SC-System-and-Communications-Protection/policy-ocp4-certs.yaml | grep 'integrityshield.io/' | wc -l
+   ```
+   [Result]
+   ```
+   3
+   ```
     
-5. Commit your changes in policy-ocp4-certs.yaml to your cloned policy-collection git repository.
+### 5. Commit your changes in policy-ocp4-certs.yaml to your cloned policy-collection git repository.
 
    [Command]
    ```
@@ -70,12 +71,9 @@ Complete the following five steps:
     rewrite community/SC-System-and-Communications-Protection/policy-ocp4-certs.yaml (75%)
     ...
     93fa995..52551a8  master -> master
-   ```
-
-
+   ```   
    
-   
-### Expected Result:
+## Expected Result:
 
 Continue to check the expected results after a minute (Above changes in Git repository will be synced by ACM Hub Cluster to update the changes in policy.)
     
