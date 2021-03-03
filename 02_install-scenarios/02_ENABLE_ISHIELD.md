@@ -10,7 +10,7 @@
  
 ### Action Steps:
  
- Complete the following seven steps.
+ Complete the following ten steps.
  
  [OC-HUB]
  1. Connect via oc to an ACM hub cluster
