@@ -4,8 +4,8 @@
 - User can setup a verification key to an ACM managed cluster.
 
 ### Prerequisite: 
-- An ACM Hub Cluster and at least one ACM Managed Cluster attached to it.
-- A pair of GPG Keys are setup as described in [doc](../prerequisite-setup/GPG_KEY_SETUP.md) [Complete this before performing the following steps]
+- An ACM Hub Cluster and at least one ACM Managed Cluster attached to it. (already done in [prepare step](../01_tester-setup/PREPARE_TEST_ENV.md) )
+- A pair of GPG Keys are setup as described in [doc](../prerequisite-setup/GPG_KEY_SETUP.md). (already done in [prerequisite setup](../prerequisite-setup/GPG_KEY_SETUP.md))
 
 
 ### Action Steps:
