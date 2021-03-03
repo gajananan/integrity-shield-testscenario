@@ -5,7 +5,7 @@
 
 ### Prerequisite: 
 - An ACM Hub Cluster and at least one ACM Managed Cluster attached to it.
-- A pair of GPG Keys are setup as described in [doc](../prerequisite-setup/GPG_KEY_SETUP.md)
+- A pair of GPG Keys are setup as described in [doc](../prerequisite-setup/GPG_KEY_SETUP.md) [Complete this before performing the following steps]
 
 
 ### Action Steps:
