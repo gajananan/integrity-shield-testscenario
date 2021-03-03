@@ -4,11 +4,12 @@ Define RSP and protect a resource with signature(annotation) in newly created na
 
 ## Prerequisite: 
 1. Integrity shield is ready in a `managed cluster`
-2. you can connect via oc to a `managed cluster`
+2. you can connect via oc to a `managed cluster`  
+> Prerequisites are already done by `1. Prepare the test environement` and `2. Complete Install Scenarios`
 
 ## Action steps:
+[OC-MANAGED] The following oc commands should be run on <font color="IndianRed"> Managed Cluster</font>
 
-[OC-MANAGED]
 ### 1. Create a namespace  
 
  [Command]
@@ -32,7 +33,6 @@ oc delete ns secure-ns
 oc create ns secure-ns
 ```
 
-[OC-MANAGED]  
 ### 2. Define which reource(s) should be [protected](https://github.com/IBM/integrity-enforcer/blob/master/docs/README_QUICK.md#define-which-reources-should-be-protected)  
   
 [Command] 
@@ -73,7 +73,6 @@ resourcesigningprofile.apis.integrityshield.io/sample-rsp created
   EOF
   ```
 
-[OC-MANAGED]  
 ### 4. Create a resource without signatrue  
 [Command]
   ```
@@ -106,7 +105,6 @@ cat /tmp/test-cm.yaml | grep integrityshield.io |  wc -l
 2
 ```
 
-[OC-MANAGED]  
 b. Install the sample resource  
 [Command]
 ```
@@ -133,7 +131,6 @@ data:
 EOF
 ```
 
-[OC-MANAGED]  
 ### 7. Try to update sample resource and confirm the request is blocked  
 [Command]
 ```

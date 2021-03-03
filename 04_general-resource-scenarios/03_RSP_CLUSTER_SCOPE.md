@@ -4,9 +4,10 @@ Cluster scope resource can be protected with signature
 ## Prerequisite: 
 1. Integrity shield is ready in a `managed cluster`
 2. you can connect via oc to a `managed cluster`
+> Prerequisites are already done by `1. Prepare the test environement` and `2. Complete Install Scenarios`
 
 ## Action steps:
-[OC-MANAGED]
+[OC-MANAGED]The following oc commands should be run on <font color="IndianRed"> Managed Cluster</font>  
 
 ### 1. create a namespace  
 [Command]
@@ -47,7 +48,7 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 EOF
 ```
-[OC-MANAGED]
+
 
 ### 3. setup RSP  
 [Command]
@@ -69,7 +70,6 @@ EOF
 resourcesigningprofile.apis.integrityshield.io/sample-rsp created
 ```
     
-[OC-MANAGED]
 
 ### 4. deploy the resource without signature  
 [Command]  
@@ -103,7 +103,6 @@ cat /tmp/test-crb.yaml | grep integrityshield.io |  wc -l
 2
 ```
 
-[OC-MANAGED]
 
 ### 6. deploy resource  
 [Command]
@@ -115,7 +114,6 @@ oc create -f /tmp/test-crb.yaml
 clusterrolebinding.rbac.authorization.k8s.io/sample-crb created
 ```
 
-[OC-MANAGED]
 
 ## Expected result:  
 ClusterRoleBinding is deployed.  

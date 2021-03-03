@@ -4,10 +4,11 @@ User can define various rules in RSP, and these rules work
 ## Prerequisite: 
 1. Integrity shield is ready in a `managed cluster`
 2. you can connect via oc to a `managed cluster`
+> Prerequisites are already done by `1. Prepare the test environement` and `2. Complete Install Scenarios`
 
 ## Action steps:
 
-[OC-MANAGED]
+[OC-MANAGED]The following oc commands should be run on <font color="IndianRed"> Managed Cluster</font>
 
 ### 1. Create a namespace  
  
@@ -34,9 +35,10 @@ oc create ns secure-ns
 
 [OC-MANAGED]    
 
-### 2. Define and install a ResourceSigningProfile into `secure-ns` namespace
+### 2. Define and install a ResourceSigningProfile
 
-[Command]
+[Command]  
+Copy the entire lines below and run the command  
 ```
 cat <<EOF | oc apply -n secure-ns -f -
 apiVersion: apis.integrityshield.io/v1alpha1
@@ -68,7 +70,7 @@ resourcesigningprofile.apis.integrityshield.io/sample-rsp created
 ### 3. Prepare sample configmaps  
     
 [Command]  
-a. protected configmap
+a. Run the following command for creating `protected configmap`
 ```
 cat << EOF > /tmp/protected-cm.yaml
 apiVersion: v1
@@ -81,7 +83,7 @@ data:
 EOF
 ```
 
-b. ignored configmap
+b. Run the following command for creating `ignored configmap`
 ```
 cat << EOF > /tmp/ignored-cm.yaml
 apiVersion: v1
@@ -97,7 +99,7 @@ EOF
 [OC-MANAGED]
 
 ### 4. Try to deploy configmaps without signature  
-a. deploy protected ConfigMap without signature  
+a. deploy `protected configmap` without signature  
     [Command]
 ```
 oc create -f /tmp/protected-cm.yaml -n secure-ns
@@ -108,7 +110,7 @@ The protected configmap cannot be created because it does not have a signature.
 ```
 Error from server: error when creating "/tmp/protected-cm.yaml": admission webhook "ac-server.integrity-shield-operator-system.svc" denied the request: Signature verification is required for this request, but no signature is found. Please attach a valid signature. (Request: {"kind":"ConfigMap","name":"protected-cm","namespace":"secure-ns","operation":"CREATE","request.uid":"38d4faee-b7ed-4e53-8c65-b9d4d5dd2dce","scope":"Namespaced","userName":"kubernetes-admin"})
 ```    
-b. deploy ignored ConfigMap without signature  
+b. deploy `ignored configmap` without signature  
 [Command]
 ```
 oc create -f /tmp/ignored-cm.yaml -n secure-ns
@@ -119,7 +121,7 @@ The ignored configmap can be created without signature because it is defined in 
 configmap/ignored-cm created
 ```
 
-### 5. generate a signature for protected comfigmap  
+### 5. Generate a signature for protected comfigmap  
 [Command]
 ```
 curl -s  https://raw.githubusercontent.com/open-cluster-management/integrity-enforcer/master/scripts/gpg-annotation-sign.sh | bash -s \
@@ -128,7 +130,7 @@ signer@enterprise.com \
 ```
 [OC-MANAGED]    
 
-### 6. deploy protected ConfigMap with signature  
+### 6. Deploy protected ConfigMap with signature  
 [Command]
 ```
 oc create -f /tmp/protected-cm.yaml -n secure-ns
@@ -138,8 +140,8 @@ oc create -f /tmp/protected-cm.yaml -n secure-ns
 configmap/protected-cm created
 ```
 
-### 7. edit protected configmap without signature  
-a. change the whitelisted part  
+### 7. Edit protected configmap without signature  
+a. change a value that is **not defined in whitelist**  
 [Command]
 ```
 oc edit cm protected-cm -n secure-ns
@@ -163,6 +165,7 @@ metadata:
 ```
 
 [Result]  
+The result will be `error` because Integrity Shield blocks the request.
 
 ```
 error: configmaps "protected-cm" could not be patched: admission webhook "ac-server.integrity-shield-operator-system.svc" denied the request: Signature verification is required for this request, but failed to verify signature; The message for this signature in annotation is not identical with the requested object. diff: {"items":[{"key":"data.comment2","values":{"after":"changed","before":"val2"}}]} (Request: {"kind":"ConfigMap","name":"protected-cm","namespace":"secure-ns","operation":"UPDATE","request.uid":"e93368cc-096e-424e-a933-90b04e6897f0","scope":"Namespaced","userName":"kubernetes-admin"})
@@ -191,7 +194,8 @@ metadata:
     integrityshield.io/lastVerifiedTimestamp: 2021-02-25T02:22:15Z
 ```
 
-[Result]
+[Result]  
+The request is 
 ```
 configmap/protected-cm edited
 ```

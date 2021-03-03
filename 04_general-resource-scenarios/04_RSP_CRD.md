@@ -4,10 +4,12 @@ Custom resource can be protected with signature
 ## Prerequisite: 
 1. Integrity shield is ready in a `managed cluster`
 2. you can connect via oc to a `managed cluster`
+> Prerequisites are already done by `1. Prepare the test environement` and `2. Complete Install Scenarios`
 
 ## Action steps:
 
-[OC-MANAGED]
+[OC-MANAGED]The following oc commands should be run on <font color="IndianRed"> Managed Cluster</font>
+
 ### 1. create a namespace  
 [Command]  
 ```
@@ -33,6 +35,7 @@ oc create ns secure-ns
 ### 2. Prepare sample Customer resources  
 a. CustomResourceDefinition  
 [Command]  
+Copy the entire lines below and run the command
 ```
 cat <<EOF > /tmp/test-crd.yaml
 apiVersion: apiextensions.k8s.io/v1
@@ -93,9 +96,7 @@ spec:
 EOF
 ```
 
-[OC-MANAGED]  
-
-### 3. Setup RSP  
+### 3. Setup the profile(ResourceSigningProfile)  
 [Command]
 
 ```
@@ -131,7 +132,7 @@ oc create -f /tmp/test-crd.yaml
 ```
 
 [Result]
-
+The result will be error because the resource does not have a signature.
 ```
 Error from server: error when creating "/tmp/test-crd.yaml": admission webhook "ac-server.integrity-shield-operator-system.svc" denied the request: Signature verification is required for this request, but no signature is found. Please attach a valid signature. (Request: {"kind":"CustomResourceDefinition","name":"crontabs.stable.example.com","namespace":"","operation":"CREATE","request.uid":"8536c2db-4431-4f26-ada5-2fdde6fe7166","scope":"Cluster","userName":"kubernetes-admin"})
 ```

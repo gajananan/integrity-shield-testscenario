@@ -4,11 +4,13 @@ Define RSP and protect a resource with signature(resource signature) in newly cr
 
 ## Prerequisite: 
 1. Integrity shield is ready in a `managed cluster`
-2. you can connect via oc to a `managed cluster`
+2. you can connect via oc to a `managed cluster`  
+> Prerequisites are already done by `1. Prepare the test environement` and `2. Complete Install Scenarios`
+
 
 ## Action steps:
+[OC-MANAGED] The following oc commands should be run on <font color="IndianRed"> Managed Cluster</font>
 
-[OC-MANAGED]
 ### 1. Create a namespace in the cluster  
 [Command]
 ```
@@ -69,7 +71,6 @@ data:
 EOF
 ```
 
-[OC-MANAGED]
 
 ### 4. Create a resource without signature
 
@@ -78,12 +79,12 @@ EOF
 oc create -f /tmp/test-cm.yaml -n secure-ns
 ```
 [Result]  
+The result will be error.  
 The resource cannot be created when it does not have a signatrue.
 ```
 Error from server: error when creating "/tmp/test-cm.yaml": admission webhook "ac-server.integrity-shield-operator-system.svc" denied the request: Signature verification is required for this request, but no signature is found. Please attach a valid signature. (Request: {"kind":"ConfigMap","name":"test-cm","namespace":"secure-ns","operation":"CREATE","request.uid":"3d0420fc-f53f-4de8-affc-fa67daace142","scope":"Namespaced","userName":"kubernetes-admin"})
 ```
 
-[OC-MANAGED]  
 ### 5. Create a resource with [signature](https://github.com/IBM/integrity-enforcer/blob/master/docs/README_QUICK.md#create-a-resource-with-signature)
 
 a. Generate a signature for the sample resource  
@@ -96,26 +97,13 @@ curl -s  https://raw.githubusercontent.com/open-cluster-management/integrity-enf
 		  /tmp/test-cm-rs.yaml
 ```
 
-[Result]
+[Result]  
+`test-cm-rs.yaml` is genereated in your /tmp dir.
 ```
-$ cat /tmp/test-cm-rs.yaml
-apiVersion: apis.integrityshield.io/v1alpha1
-kind: ResourceSignature
-metadata:
-  annotations:
-    integrityshield.io/messageScope: spec
-    integrityshield.io/signature: LS0tLS1CRUdJTiBQR1AgU0lHTkFUVVJFLS0tLS0KCmlRRkZCQUFCQ0FB...
-  name: rsig-configmap-test-cm
-  labels:
-    integrityshield.io/sigobject-apiversion: v1
-    integrityshield.io/sigobject-kind: ConfigMap
-    integrityshield.io/sigtime: "1614143715"
-spec:
-  data:
-    - message: H4sIAOPgNWAAA0ssyAxLLSrOzM...
-      signature: LS0tLS1CRUdJTiBQR1AgU0lHTkFUVVJFLS0tLS0KCmlRRkZCQUFCQ0...
-      type: resource
+$ ls -la  /tmp/test-cm-rs.yaml
+-rw-r--r--  1   staff  1935  3  3 15:42 /tmp/test-cm-rs.yaml
 ```
+
 b. Create the signature in the cluster  
 
 [Command]
@@ -161,7 +149,8 @@ EOF
 ```
 oc replace -f /tmp/test-cm2.yaml -n secure-ns
 ```
-[Result]
+[Result]  
+The result will be error.
 ```
 Error from server: error when replacing "/tmp/test-cm2.yaml": admission webhook "ac-server.integrity-shield-operator-system.svc" denied the request: Signature verification is required for this request, but failed to verify signature; The message for this signature in ResourceSignature is not identical with the requested object. diff: {"items":[{"key":"data.key4","values":{"after":null,"before":"val4"}}]} (Request: {"kind":"ConfigMap","name":"test-cm","namespace":"secure-ns","operation":"UPDATE","request.uid":"61360b1b-64e9-4cd5-ac2d-62d6223d5288","scope":"Namespaced","userName":"IAM#rurikudo@ibm.com"})
 ```

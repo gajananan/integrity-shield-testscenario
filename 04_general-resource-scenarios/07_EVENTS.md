@@ -6,8 +6,10 @@ When the request is blocked, user can check the Events
 2. you can connect via oc to a `managed cluster`
 
 ## Action steps:
+[OC-MANAGED]The following oc commands should be run on <font color="IndianRed"> Managed Cluster</font>
+
 ### 1. create a namespace  
- 
+
 [Command]  
 ```
 oc create ns secure-ns 
@@ -53,11 +55,11 @@ resourcesigningprofile.apis.integrityshield.io/sample-rsp created
 ### 3. prepare a sample resource   
 [Command] 
 ```
-cat << EOF > /tmp/test-cm.yaml
+cat << EOF > /tmp/test-cm-event-test.yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: test-cm
+  name: test-cm-event-test
 data:
   key1: val1
   key2: val2
@@ -68,7 +70,7 @@ EOF
 ### 4. Create a respirce without signatrue  
 [Command] 
 ```
-oc create -f /tmp/test-cm.yaml -n secure-ns
+oc create -f /tmp/test-cm-event-test.yaml -n secure-ns
 ```
 [Result]  
 The resource cannot be created when it does not have a signatrue.
@@ -77,13 +79,12 @@ Error from server: error when creating "/tmp/test-cm.yaml": admission webhook "a
 ```
 
 ## Expected result:
-IntegrityShieldEvent is generated.  
+Check that IntegrityShieldEvent is generated.  
 [Command]
 ```
-oc get EVENT -n secure-ns
+oc get EVENT -n secure-ns | grep configmap/test-cm-event-test | head -n 1 | grep 'Result: deny' | wc -l
 ```
 [Result]
 ```
-LAST SEEN   TYPE              REASON         OBJECT              MESSAGE
-4s          IntegrityShield   no-signature   configmap/test-cm   [IntegrityShieldEvent] Result: deny, Reason: "Signature verification is required for this request, but no signature is found. Please attach a valid signature." (RSP `namespace: secure-ns, name: sample-rsp`), Request: {"kind":"ConfigMap","name":"test-cm","namespace":"secure-ns","operation":"CREATE","request.uid":"61f9c54e-dad9-4c0b-8bd8-81723a63aec3","scope":"Namespaced","userName":"kubernetes-admin"}
+1
 ```
