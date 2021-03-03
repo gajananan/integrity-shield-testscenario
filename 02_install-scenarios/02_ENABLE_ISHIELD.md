@@ -90,7 +90,7 @@
     ![policy-integrity-shield in violation status detail](../images/policy-violation-after-init-status-detail.PNG)
 
    
- 5. Edit `community/CM-Configuration-Management/policy-integrity-shield.yaml`
+ 5. Edit `community/CM-Configuration-Management/policy-integrity-shield.yaml` in your local host machine in `policy-collection`
     
     a. change remediationAction from `inform` to `enforce` as shown below
     
@@ -108,21 +108,16 @@
  
     a. configure the placement rule to select which ACM managed cluster(s) in which IShiled should be enabled.
     
-    ![policy-integrity-shield change placementrule ](../images/policy-violation-after-init-edit-placement.PNG)
-    
-    Check the below example for finding the appropriate labels ACM managed cluster(s) 
-       
-    ![ACM Managed Cluster Labels](../images/acm-managed-cluster-label.PNG)
+       (follow the same as step 5)
  
- 7. Sign `community/CM-Configuration-Management/policy-integrity-shield.yaml` policy
- 
+ 7. Run following twp commands to sign changed polices
+   
     [Command]
     ```
     curl -s  https://raw.githubusercontent.com/open-cluster-management/integrity-shield/master/scripts/gpg-annotation-sign.sh | bash -s -\
         signer@enterprise.com \
         community/CM-Configuration-Management/policy-integrity-shield.yaml
     ```
- 8. Sign `community/CM-Configuration-Management/policy-integrity-shield-events.yaml` policy
  
     [Command]
     ```
@@ -130,9 +125,8 @@
         signer@enterprise.com \
         community/CM-Configuration-Management/policy-integrity-shield-events.yaml
     ```
- 9. Check if two annotations started with "integrityshield.io" are attached to the policy files
-    a. check `community/CM-Configuration-Management/policy-integrity-shield.yaml`
- 
+ 9. Run the following commands
+
     [Command]
     ```
     cat community/CM-Configuration-Management/policy-integrity-shield.yaml | grep 'integrityshield.io/' | wc -l
@@ -141,7 +135,7 @@
     ```
     7
     ```
-    b. check `community/CM-Configuration-Management/policy-integrity-shield-events.yaml`
+ 
     [Command]
     ```
     cat community/CM-Configuration-Management/policy-integrity-shield-events.yaml | grep 'integrityshield.io/' | wc -l
@@ -150,6 +144,7 @@
     ```
     8
     ```    
+    
  6. Commit your changes in `community/CM-Configuration-Management/policy-integrity-shield.yaml` to your cloned policy-collection git repository.
 
     [Command]
