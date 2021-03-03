@@ -20,7 +20,7 @@ Complete the following seven steps:
 ### 2. Edit `community/CM-Configuration-Management/policy-integrity-shield.yaml`
    Change all occurances of  `musthave` to `mustnothave`
    
-### 3. Run the following command to sign `community/CM-Configuration-Management/policy-integrity-shield.yaml` policy with `signer@enterprise.com`
+### 3. Run the following command to sign policy with signer `signer@enterprise.com`
  
    [Command]
    ```
