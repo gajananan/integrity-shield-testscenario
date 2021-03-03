@@ -31,7 +31,7 @@ Complete the following seven steps:
     
 ### 4. Run the following command
 
-   Confirm two annotations started with "integrityshield.io" are attached to `community/CM-Configuration-Management/policy-integrity-shield.yaml`
+   Confirm annotations started with "integrityshield.io" are attached to `community/CM-Configuration-Management/policy-integrity-shield.yaml`
    
    [Command]
    ```
