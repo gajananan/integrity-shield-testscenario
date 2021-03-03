@@ -58,6 +58,8 @@
     --label environment=dev  |  oc apply -f -
     ```
     
+    Confirm following resources are created.
+    
     [Result]
     ```
     secret/keyring-secret created
@@ -79,6 +81,8 @@
     oc get secret -n integrity-shield-operator-system keyring-secret
     ```
     
+    Confirm secret with name `keyring-secret` is created.
+    
     [Result]
     ```
     NAME             TYPE     DATA   AGE
@@ -91,6 +95,8 @@
     ```
     oc get secret -n integrity-shield-operator-system keyring-secret
     ```
+    
+    Confirm secret with name `keyring-secret` is created.
     
     [Result]
     ```
