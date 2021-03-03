@@ -5,9 +5,12 @@
 
 ### Prerequisite: 
 - Policy collection is already cloned locally in signing host as described in [doc](../prerequisite-setup/GIT_CLONE_POLICY_COLLECTION.md)
-- IShield protection is enabled as described in [doc](../install-scenarios/DEPLOY_ISHIELD.md)
+- IShield protection is enabled as described in [doc](../install-scenarios/DEPLOY_ISHIELD.md).  complete this step if you have done yet, before proceeding.
  
 ### Action Steps:
+
+Compelete the following five steps:
+
 1. Go to the directory of your cloned policy collection Git repository in the signing host
 
    [Command]
@@ -84,14 +87,18 @@
     
     ```
     
-    4.  Check if annotations are attached to policy file. For example, check if two annotations started with "integrityshield.io" are attached to `stable/AC-Access-Control/policy-limitclusteradmin.yaml`
- 
+3.  Check if annotations are attached to policy file. For example, check if two annotations started with "integrityshield.io" are attached to `stable/AC-Access-Control/policy-limitclusteradmin.yaml`
+    
+    [Command]
     ```
     cat stable/AC-Access-Control/policy-limitclusteradmin.yaml | grep 'integrityshield.io/' | wc -l
-    6
     ```
     
-    5. Commit your changes in policy-ocp4-certs.yaml to your cloned policy-collection git repository.
+    [Result]
+    ```
+    6
+    ```
+4. Commit your changes in policy-ocp4-certs.yaml to your cloned policy-collection git repository.
 
     [Command]
     ```
@@ -100,14 +107,12 @@
     git push origin master
     ```
    
-    [Result]
-   
-    <ScreenShot>
-    
-     6. Enable policy-integrity-shield on an ACM managed cluster.
+5. Enable policy-integrity-shield on an ACM managed cluster.
     
     [OC-HUB]  
+
     - Switch to ACM Hub cluster and create a new namespace (e.g. policy-stable) in the ACM hub cluster to deploy polices under stable directory.
+    
     [Command]
     ```
     oc create ns policy-stable
