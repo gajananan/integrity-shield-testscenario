@@ -13,7 +13,7 @@ Complete the following six steps:
 
 1. Create a another signer key (with different email address e.g. `invalid_signer@enterprise.com`) as described in [doc](../prerequisite-setup/GPG_KEY_SETUP.md)
    
-   This signer key must be different from the one setup in [install-scenarios-step] (../install-scenarios/VERIFICATION_KEY_SETUP.md).
+   This signer key must be different from the one setup in [install-scenarios-step](../install-scenarios/VERIFICATION_KEY_SETUP.md).
    
 2. Go to the directory of your cloned policy collection Git repository in the signing host
 
