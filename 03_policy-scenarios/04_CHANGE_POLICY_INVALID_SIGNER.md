@@ -50,7 +50,7 @@ Complete the following six steps:
    ```
 ### 5. Run the following command
 
-   Confirm two annotations started with "integrityshield.io" are attached to `community/CM-Configuration-Management/policy-integrity-shield.yaml`
+   Confirm signature annotations started with "integrityshield.io" are attached to `community/CM-Configuration-Management/policy-integrity-shield.yaml`
     
    [Command]
    ```
