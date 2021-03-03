@@ -71,7 +71,16 @@ Complete the following seven steps:
     --path /tmp/pubring.gpg \
     --label environment=dev  |  oc delete -f -
    ```
-
+   
+   Confirm following resources are created.
+   
+   [Result]
+   ```
+    secret/keyring-secret deleted
+    channel.apps.open-cluster-management.io/keyring-secret-deployments deleted
+    placementrule.apps.open-cluster-management.io/secret-placement deleted
+    subscription.apps.open-cluster-management.io/keyring-secret deleted
+   ```
   
 ### Expected Result:
 
