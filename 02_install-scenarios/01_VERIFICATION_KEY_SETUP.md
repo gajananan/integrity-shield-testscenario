@@ -85,8 +85,8 @@
     keyring-secret   Opaque   1      26h
     ```
     
-  2.  Connect via `OC` to the ACM Managed cluster and confirm a secret with name `keyring-secret` is created.
- 
+ 2. Connect via `OC` to the ACM Managed cluster and confirm a secret with name `keyring-secret` is created.
+     
     [Command] 
     ```
     oc get secret -n integrity-shield-operator-system keyring-secret
