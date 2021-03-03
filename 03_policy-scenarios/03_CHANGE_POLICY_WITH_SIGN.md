@@ -4,8 +4,8 @@
 - User can not update a policy deployed in an ACM Hub/Managed Clusters without a proper signature  attached.
 
 ### Prerequisite: 
-- Policy collection is already cloned locally in signing host (already done in [prerequisite-setup](../prerequisite-setup/GIT_CLONE_POLICY_COLLECTION.md)
-- Integrity Shield protection is enabled. (already done in [install-scenarios](../install-scenarios/DEPLOY_ISHIELD.md)
+- Policy collection is already cloned locally in signing host (already done in [prerequisite-setup](../prerequisite-setup/GIT_CLONE_POLICY_COLLECTION.md))
+- Integrity Shield protection is enabled. (already done in [install-scenarios](../install-scenarios/DEPLOY_ISHIELD.md))
  
 ### Action Steps:
 
@@ -77,8 +77,7 @@ Complete the following five steps:
    
 ### Expected Result:
 
-Above changes in Git repository will be synced by ACM Hub Cluster to update the changes in policy.  
-After a minute, continue to check the expected results.
+Continue to check the expected results after a minute (Above changes in Git repository will be synced by ACM Hub Cluster to update the changes in policy.)
     
 [WebConsle-HUB]
 
