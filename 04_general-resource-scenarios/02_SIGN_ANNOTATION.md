@@ -8,7 +8,7 @@ Define RSP and protect a resource with signature(annotation) in newly created na
 > Prerequisites are already done by `1. Prepare the test environement` and `2. Complete Install Scenarios`
 
 ## Action steps:
-[OC-MANAGED] The following oc commands should be run on <font color="IndianRed"> Managed Cluster</font>
+[OC-MANAGED] The following oc commands should be run on <font color="Red"> Managed Cluster</font>
 
 ### 1. Create a namespace  
 
@@ -131,7 +131,7 @@ data:
 EOF
 ```
 
-### 7. Try to update sample resource and confirm the request is blocked  
+b. Try to update sample resource and confirm the request is blocked  
 [Command]
 ```
 oc replace -f /tmp/test-cm2.yaml -n secure-ns
