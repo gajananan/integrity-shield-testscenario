@@ -13,6 +13,7 @@
  Complete the following ten steps.
  
  [OC-HUB]
+ 
  1. Connect via oc to an ACM hub cluster
     
     [Command]
@@ -34,8 +35,8 @@
  
  3. Enable policies on an ACM managed cluster.
     
-    [OC-HUB]  
-    - Switch to ACM Hub cluster and create a new namespace (e.g. policy-community) in the ACM hub cluster to deploy policy-integrity-shield
+    Switch to ACM Hub cluster and create a new namespace (e.g. policy-community) in the ACM hub cluster to deploy policy-integrity-shield
+    
     [Command]
     ```
     oc create ns policy-community
@@ -47,29 +48,28 @@
     ```
     -  Create policy-integrity-shield in the ACM hub cluster in newly created namespace.
     
-    [Parameters]
-    - Cloned repository URL (-u): `https://github.com/<YOUR-ORG-NAME>/policy-collection.git`                                 
-    - Resource Prefix (-a): `demo-community-policies`
-    - Git Path (-p): `community`
-    - Cluster namespace (-n): `policy-community`
- 
-    [Command] Change `<YOUR-ORG-NAME>` to your Git Organization, when executing the following command
+    Change `<YOUR-ORG-NAME>` to your Git Organization and use the URL that starts with `https://github.com` and pass it as parameter: `Cloned repository URL (-u)`, when executing the following command
+    
+    [Command] 
     ```
     cd deploy
     bash ./deploy.sh -u https://github.com/<YOUR-ORG-NAME>/policy-collection.git -a demo-community-policies -p community -n policy-community
+    cd ..
     ```
     
-    [Result] Confirm the following resources are created
+    Confirm the following resources are created
+    
+    [Result] 
     ```
     channel.apps.open-cluster-management.io/demo-community-policies-chan created
     subscription.apps.open-cluster-management.io/demo-community-policies-sub created
     ```
     
-    Above changes in Git repository will be synced by ACM Hub Cluster to update the changes in policy.
-    After a minute, continue to the following steps.
-
+    Continue to the following steps above after a minute (above changes in Git repository will be synced by ACM Hub Cluster to update the changes in policy.)
+   
  4. Confirm the policy status in  ACM Hub Web Console.
-    [WebConsle-HUB]
+ 
+    [WebConsole-HUB]
 
     a. Connect to ACM Hub Cluster WebConsole and go to polices page.
     b. Search for `policy-integrity-shield` in Find Policies as shown below:
