@@ -1,27 +1,27 @@
 # Change a Policy with Signature
 
-### Goal:
+## Goal:
 - User can deploy [stable policies](https://github.com/open-cluster-management/policy-collection/tree/master/stable) in an ACM Hub/Managed Clusters with valid signatures attached.
 
-### Prerequisite: 
+## Prerequisite: 
 - Policy collection is already cloned locally in signing host (already done in [prerequisite-setup-step](../prerequisite-setup/GIT_CLONE_POLICY_COLLECTION.md))
 - Integrity Shield protection is enabled (already done in [install-scenarios-step](../install-scenarios/DEPLOY_ISHIELD.md)). 
  
-### Action Steps:
+## Action Steps:
 
-Compelete the following five steps:
+Compelete the following seven steps:
 
-1. Go to the directory of your cloned policy collection Git repository in the signing host
+### 1. Go to the directory of your cloned policy collection Git repository in the signing host
 
    [Command]
    ```
    cd <SIGING HOST DIR>/policy-collection
    ```
    
-2. Create the following signing script under `deploy` directory in the cloned `policy-collection` repository in the host machine.
+### 2. Create the following signing script under `deploy` directory in the cloned `policy-collection` repository in the host machine.
 
-    [Command]
-    ```
+   [Command]
+   ```
     cat > deploy/sign-policy.sh
     #!/bin/bash
     CMDNAME=`basename $0`
@@ -47,30 +47,30 @@ Compelete the following five steps:
 
       echo Signature annotation is attached in $file.
       done
-    ```
+   ```
     
-    Make `deploy/sign-policy.sh` script executable.
+   Make `deploy/sign-policy.sh` script executable.
     
-    [Command]
-    ```
-    chmod +x deploy/sign-policy.sh
-    ```
+   [Command]
+   ```
+   chmod +x deploy/sign-policy.sh
+   ```
     
-    Run the following script to sign all the policies in `stable` directory with signer `signer@enterprise.com`
+   Run the following script to sign all the policies in `stable` directory with signer `signer@enterprise.com`
     
-    [Command]
-    ```
-    ./deploy/sign-policy.sh signer@enterprise.com stable/
-    ```
+   [Command]
+   ```
+   ./deploy/sign-policy.sh signer@enterprise.com stable/
+   ```
     
     
-    Confirm the following policy files under `stable` directory have been modified.
+   Confirm the following policy files under `stable` directory have been modified.
     
-    [Result] 
-    ```
-    git status
-    On branch master
-    Changes not staged for commit:
+   [Result] 
+   ```
+   git status
+   On branch master
+   Changes not staged for commit:
     (use "git add <file>..." to update what will be committed)
     (use "git restore <file>..." to discard changes in working directory)
         modified:   stable/AC-Access-Control/policy-limitclusteradmin.yaml
@@ -88,66 +88,64 @@ Compelete the following five steps:
         modified:   stable/SI-System-and-Information-Integrity/policy-psp.yaml
         modified:   stable/SI-System-and-Information-Integrity/policy-scc.yaml
     
-    ```
+   ```
     
-3.  Check if annotations are attached to a policy file. 
+### 3.  Check if annotations are attached to a policy file. 
 
-    For example, check if two annotations started with "integrityshield.io" are attached to `stable/AC-Access-Control/policy-limitclusteradmin.yaml`
+   For example, check if signature annotations started with "integrityshield.io" are attached to `stable/AC-Access-Control/policy-limitclusteradmin.yaml`
     
-    [Command]
-    ```
-    cat stable/AC-Access-Control/policy-limitclusteradmin.yaml | grep 'integrityshield.io/' | wc -l
-    ```
+   [Command]
+   ```
+   cat stable/AC-Access-Control/policy-limitclusteradmin.yaml | grep 'integrityshield.io/' | wc -l
+   ```
     
-    [Result]
-    ```
-    6
-    ```
+   [Result]
+   ```
+   6
+   ```
     
-4. Commit your changes in `policy-ocp4-certs.yaml` to your cloned policy-collection git repository.
+### 4. Commit your changes in `policy-ocp4-certs.yaml` to your cloned policy-collection git repository.
 
-    [Command]
-    ```
-    git add stable
-    git commit -m 'stable polices have been signed`
-    git push origin master
-    ```
-   
-5. Enable policy-integrity-shield on an ACM managed cluster.
+   [Command]
+   ```
+   git add stable
+   git commit -m 'stable polices have been signed`
+   git push origin master
+   ```
     
-    [OC-HUB]  
+### 5. Switch to console connecting via `OC` to the ACM Hub cluster 
 
-    - Switch to ACM Hub cluster and create a new namespace (e.g. policy-stable) in the ACM hub cluster to deploy polices under stable directory.
+### 6. Create a new namespace (e.g. policy-stable) in the ACM hub cluster to deploy polices under stable directory.
     
-    [Command]
-    ```
-    oc create ns policy-stable
-    ```
+   [Command]
+   ```
+   oc create ns policy-stable
+   ```
     
-    [Result]
-    ```
-    namespace/policy-stable created
-    ```
-    -  Create policies under stable directory in the ACM hub cluster in the newly created namespace `policy-stable`.
+   [Result]
+   ```
+   namespace/policy-stable created
+   ```
     
-    [Parameters]
-    - Cloned repository URL (-u): `https://github.com/<YOUR-ORG-NAME>/policy-collection.git`
-    - Resource Prefix (-a): `demo-stable-policies `
-    - Git Path (-p): `stable`
-    - Cluster namespace (-n) : `policy-stable `
+### 7. Create policies under stable directory in the ACM hub cluster in the newly created namespace `policy-stable`.
+    
+   Change `<YOUR-ORG-NAME>` to your Git Organization and use the URL that starts with `https://github.com` and pass it as parameter: `Cloned repository URL (-u)`, when executing the following command
  
-    [Command]
-    ```
-    cd deploy
-    bash ./deploy.sh -u https://github.com/<YOUR-ORG-NAME>/policy-collection.git -a demo-stable-policies -p stable -n policy-stable
-    ```
+   [Command]
+   ```
+   cd deploy
+   bash ./deploy.sh -u https://github.com/<YOUR-ORG-NAME>/policy-collection.git -a demo-stable-policies -p stable -n policy-stable
+   ```
     
-    [Result]
-    ```
-    channel.apps.open-cluster-management.io/demo-stable-policies-chan created
-    subscription.apps.open-cluster-management.io/demo-stable-policies-sub created
-    ```
-### Expected Result:
+   Confirm the following resources are created
+    
+   [Result]
+   ```
+   channel.apps.open-cluster-management.io/demo-stable-policies-chan created
+   subscription.apps.open-cluster-management.io/demo-stable-policies-sub created
+   ```
+
+## Expected Result:
 
 Continue to check the expected results after a minute (Above changes in Git repository will be synced by ACM Hub Cluster to update the changes in policy.)
     
