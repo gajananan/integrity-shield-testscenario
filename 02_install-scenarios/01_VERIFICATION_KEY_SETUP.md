@@ -41,15 +41,11 @@
     
  3. Deploy verification key to an ACM hub cluster so that it can propagate to a managed cluster(s).
 
-    [Parameters]
-     - secret name: `keyring-secret` 
-     - namespace:  `integrity-shield-operator-system` 
-     - pubring file:  /tmp/pubring.gpg
-     - placement rule:   environment=dev (Note: Change placement rule based on label used for identifying ACM managed cluster)
-      
-      Check the below example for finding the appropriate labels ACM managed cluster(s) 
+    Change the placement rule parameteter based on label used for identifying ACM managed cluster, while executing the following command
        
-      ![ACM Managed Cluster Labels](../images/acm-managed-cluster-label.PNG)
+    Check the below example for finding the appropriate labels ACM managed cluster(s) 
+       
+    ![ACM Managed Cluster Labels](../images/acm-managed-cluster-label.PNG)
     
     [Command]  
     
