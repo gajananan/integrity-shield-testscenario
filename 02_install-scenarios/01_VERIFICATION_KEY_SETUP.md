@@ -70,8 +70,8 @@
 
  Confirm the results below after a minute.
  
- [OC-HUB]
- 1. Confirm a secret with name `keyring-secret` is successfully created in ACM Hub Cluster as shown below.
+ 
+ 1. Connect via `OC` to the ACM Hub cluster and confirm a secret with name `keyring-secret` is successfully created in ACM Hub Cluster as shown below.
  
     [Command]
   
@@ -85,9 +85,7 @@
     keyring-secret   Opaque   1      26h
     ```
     
- [OC-MANAGED]  
- 
- 2. Switch connection to an ACM Managed cluster and confirm a secret with name `keyring-secret` is created.
+  2.  Connect via `OC` to the ACM Managed cluster and confirm a secret with name `keyring-secret` is created.
  
     [Command] 
     ```
