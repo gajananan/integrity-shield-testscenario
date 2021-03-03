@@ -186,8 +186,8 @@ Continue to check the expected results after a minute (Above changes in Git repo
     
 ## 2. Confirm Integrity Shield is successfully enabled in ACM Managed Cluster(s)
  
-   [OC-MANAGED]
-    
+   Wait at least a minute before continue the following steps as it takes a bit time to setup Integrity Shield in managed cluster.
+   
    Switch to ACM Hub Managed Cluster and, run the following `OC` command
    
    [Command]
