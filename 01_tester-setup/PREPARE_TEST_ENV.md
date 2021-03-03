@@ -11,7 +11,7 @@
  
 ### Action Steps:
 
-Complete the following steps:
+Complete the following steps before start testing:
 
 1. Open command console (`OC-Hub`) for connecting to ACM Hub Cluster via `oc`
 2. Open another command console (`OC-MANAGED`) for connecting to ACM Managed Cluster via `oc`
