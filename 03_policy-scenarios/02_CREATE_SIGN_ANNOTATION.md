@@ -26,8 +26,12 @@
    
 ### Expected Result:
 
-   [Result]
+   [Command]
    ```
    cat community/SC-System-and-Communications-Protection/policy-ocp4-certs.yaml | grep 'integrityshield.io/' | wc -l
-   3
+   ```
+   
+   [Result]
+   ```
+    3
    ```
