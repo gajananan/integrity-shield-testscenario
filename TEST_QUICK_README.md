@@ -1,8 +1,8 @@
 # Test IShield protection for RHACM Policies and any application resources
 
 ### Goal:
-- User can verify if IShield enabled in an ACM Managed Cluster can successfully protect the integrity of RHACM Policies in [policy-collection](https://github.com/open-cluster-management/policy-collection)
-- User can verify if IShield enabled in an OpenShift Cluster can successfully protect the integrity of specified application resources.
+- User can verify if Integrity Shield enabled in an ACM Managed Cluster can successfully protect the integrity of RHACM Policies in [policy-collection](https://github.com/open-cluster-management/policy-collection)
+- User can verify if Integrity Shield enabled in an OpenShift Cluster can successfully protect the integrity of specified application resources.
 
 ### How to perform test: 
 
