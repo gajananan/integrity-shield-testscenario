@@ -7,7 +7,7 @@ Resources can be signed by multiple signers and multiple signing keys are avail
 3. Setup a another signer.   
    a. Setup a new GPG key with email `signer2@enterprise.com` and export the verification key to `/tmp/signer2_pubring.gpg` as described in [doc](../prerequisite-setup/GPG_KEY_SETUP.md) 
    
-    [OC-HUB]  
+    [OC-HUB]  this command should be run on <font color="IndianRed"> Hub Cluster</font>  
       b. Create another secret `keyring-secret-signer2` in the namespace `integrity-shield-operator-system` from file `tmp/signer2_pubring.gpg`
       
       [Command]
@@ -44,8 +44,6 @@ Resources can be signed by multiple signers and multiple signing keys are avail
         fileName: signer2_pubring.gpg
     ```
 
-    [OC-MANAGED]
-
 5. Check if multiple verification keys are created
 
     [Command]
@@ -60,7 +58,7 @@ Resources can be signed by multiple signers and multiple signing keys are avail
 
 
 ## Action steps:
-[OC-MANAGED]
+[OC-MANAGED] The following oc commands should be run on <font color="IndianRed"> Managed Cluster</font>
 ### 1. create a namespace  
 [Command]
 ```
