@@ -25,6 +25,7 @@
    - Update Policy with a valid signature as in [doc](./03_policy-scenarios/03_CHANGE_POLICY_WITH_SIGN.md)
    - Update Policy with an invalid signature as in [doc](./03_policy-scenarios/04_CHANGE_POLICY_INVALID_SIGNER.md)
    - Create stable policies with valid signatures as in [doc](./03_policy-scenarios/05_CREATE_STABLE_POLICY_WITH_SIGN.md)
+   - Create a policy via UI with valid signatures as in [doc](./03_policy-scenarios/06_CREATE_POLICY_WITH_SIGN_VIA_UI.md)
    
 4. Verify General Resources
    - Install general resources with signature(resource signature) [doc](./04_general-resource-scenarios/01_SIGN_RESOURCE_SIGNATRUE.md)
