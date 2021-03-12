@@ -126,7 +126,7 @@
 
 1. Connect to ACM Hub Cluster WebConsole and go to polices page.
 2. Search for `policy-namespace`  in Find Policies and click  `policy-namespace`  policy. 
-4. Check if  policy-integrity-shield-events is in compliant state (Cluster violation -> green) as show below.
+4. Check if  `policy-namespace` is in compliant state (Cluster violation -> green) as show below.
      
   ![Policy Violation](../images/policy-integrity-shield-ui-policy-compliant.PNG)  
  
