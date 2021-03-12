@@ -4,7 +4,7 @@
 - User can create a policy via UI with signature annotation
 
 ### Prerequisite: 
-- IShield protection is enabled as described in [doc](../install-scenarios/DEPLOY_ISHIELD.md)
+- Integrity Shield protection is enabled (already done in [install-scenarios-step](../01_install-scenarios/02_ENABLE_ISHIELD.md))
 
 ### Action Steps:
 
